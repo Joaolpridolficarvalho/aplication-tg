@@ -11,7 +11,7 @@ class Terminal:
         #self.test()
         self.folder = Path(r"C:\Users\Joao\Downloads\balcon")
 
-        self.speake("Hello World")
+
 
 
 
@@ -21,5 +21,3 @@ class Terminal:
     def change_voice(self, voice):
         subprocess.run(['cmd', '/c', 'start', '/D', self.folder, 'balcon.exe', ' --voice1-name', voice])
 
-if __name__ == "__main__":
-    Terminal()
