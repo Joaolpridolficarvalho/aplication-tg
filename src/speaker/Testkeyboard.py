@@ -33,4 +33,4 @@ class On_screen_keyboard:
     ButtonN = Button(window, text="n", relief=FLAT, height=2, width=2, background="light blue").place(x=125, y=390)
     ButtonM = Button(window, text="m", relief=FLAT, height=2, width=2, background="light blue").place(x=150, y=390)
     ButtonSpace = Button(window, text=" ", relief=FLAT, height=2, width=10, background="light blue").place(x=100, y=435)
-window.mainloop()
+    window.mainloop()
