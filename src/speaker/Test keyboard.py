@@ -1,211 +1,36 @@
-'''Popup Keyboard is a module to be used with Python's Tkinter library
-It subclasses the Entry widget as KeyboardEntry to make a pop-up
-keyboard appear when the widget gains focus. Still early in development.
-'''
-
 from tkinter import *
-
-
-class _PopupKeyboard(Toplevel):
-    '''A Toplevel instance that displays a keyboard that is attached to
-    another widget. Only the Entry widget has a subclass in this version.
-    '''
-
-    def __init__(self, parent, attach, x, y, keycolor, keysize=5):
-        Toplevel.__init__(self, takefocus=0)
-
-        self.overrideredirect(True)
-        self.attributes('-alpha', 0.85)
-
-        self.parent = parent
-        self.attach = attach
-        self.keysize = keysize
-        self.keycolor = keycolor
-        self.x = x
-        self.y = y
-
-        self.row1 = Frame(self)
-        self.row2 = Frame(self)
-        self.row3 = Frame(self)
-        self.row4 = Frame(self)
-
-        self.row1.grid(row=1)
-        self.row2.grid(row=2)
-        self.row3.grid(row=3)
-        self.row4.grid(row=4)
-
-        self._init_keys()
-
-        # destroy _PopupKeyboard on keyboard interrupt
-        self.bind('<Key>', lambda e: self._destroy_popup())
-
-        # resize to fit keys
-        self.update_idletasks()
-        self.geometry('{}x{}+{}+{}'.format(self.winfo_width(),
-                                           self.winfo_height(),
-                                           self.x, self.y))
-
-    def _init_keys(self):
-        self.alpha = {
-            'row1': ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '/'],
-            'row2': ['<<<', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ',', '>>>'],
-            'row3': ['shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', '.', '?', '[1,2,3]'],
-            'row4': ['@', '#', '%', '*', '[ space ]', '+', '-', '=']
-        }
-
-        for row in self.alpha.iterkeys():  # iterate over dictionary of rows
-            if row == 'row1':  # TO-DO: re-write this method
-                i = 1  # for readability and functionality
-                for k in self.alpha[row]:
-                    Button(self.row1,
-                           text=k,
-                           width=self.keysize,
-                           bg=self.keycolor,
-                           command=lambda k=k: self._attach_key_press(k)).grid(row=0, column=i)
-                    i += 1
-            elif row == 'row2':
-                i = 2
-                for k in self.alpha[row]:
-                    Button(self.row2,
-                           text=k,
-                           width=self.keysize,
-                           bg=self.keycolor,
-                           command=lambda k=k: self._attach_key_press(k)).grid(row=0, column=i)
-                    i += 1
-            elif row == 'row3':
-                i = 2
-                for k in self.alpha[row]:
-                    Button(self.row3,
-                           text=k,
-                           width=self.keysize,
-                           bg=self.keycolor,
-                           command=lambda k=k: self._attach_key_press(k)).grid(row=0, column=i)
-                    i += 1
-            else:
-                i = 3
-                for k in self.alpha[row]:
-                    if k == '[ space ]':
-                        Button(self.row4,
-                               text=k,
-                               width=self.keysize * 3,
-                               bg=self.keycolor,
-                               command=lambda k=k: self._attach_key_press(k)).grid(row=0, column=i)
-                    else:
-                        Button(self.row4,
-                               text=k,
-                               width=self.keysize,
-                               bg=self.keycolor,
-                               command=lambda k=k: self._attach_key_press(k)).grid(row=0, column=i)
-                    i += 1
-
-    def _destroy_popup(self):
-        self.destroy()
-
-    def _attach_key_press(self, k):
-        if k == '>>>':
-            self.attach.tk_focusNext().focus_set()
-            self.destroy()
-        elif k == '<<<':
-            self.attach.tk_focusPrev().focus_set()
-            self.destroy()
-        elif k == '[1,2,3]':
-            pass
-        elif k == '[ space ]':
-            self.attach.insert(END, ' ')
-        else:
-            self.attach.insert(END, k)
-
-
-'''
-TO-DO: Implement Number Pad
-class _PopupNumpad(Toplevel):
-    def __init__(self, x, y, keycolor='gray', keysize=5):
-        Toplevel.__init__(self, takefocus=0)
-
-        self.overrideredirect(True)
-        self.attributes('-alpha',0.85)
-
-        self.numframe = Frame(self)
-        self.numframe.grid(row=1, column=1)
-
-        self.__init_nums()
-
-        self.update_idletasks()
-        self.geometry('{}x{}+{}+{}'.format(self.winfo_width(),
-                                           self.winfo_height(),
-                                           self.x,self.y))
-
-    def __init_nums(self):
-        i=0
-        for num in ['7','4','1','8','5','2','9','6','3']:
-            print num
-            Button(self.numframe,
-                   text=num,
-                   width=int(self.keysize/2),
-                   bg=self.keycolor,
-                   command=lambda num=num: self.__attach_key_press(num)).grid(row=i%3, column=i/3)
-            i+=1
-'''
-
-
-class KeyboardEntry(Frame):
-    '''An extension/subclass of the Tkinter Entry widget, capable
-    of accepting all existing args, plus a keysize and keycolor option.
-    Will pop up an instance of _PopupKeyboard when focus moves into
-    the widget
-
-    Usage:
-    KeyboardEntry(parent, keysize=6, keycolor='white').pack()
-    '''
-
-    def __init__(self, parent, keysize=5, keycolor='gray', *args, **kwargs):
-        Frame.__init__(self, parent)
-        self.parent = parent
-
-        self.entry = Entry(self, *args, **kwargs)
-        self.entry.pack()
-
-        self.keysize = keysize
-        self.keycolor = keycolor
-
-        self.state = 'idle'
-
-        self.entry.bind('<FocusIn>', lambda e: self._check_state('focusin'))
-        self.entry.bind('<FocusOut>', lambda e: self._check_state('focusout'))
-        self.entry.bind('<Key>', lambda e: self._check_state('keypress'))
-
-    def _check_state(self, event):
-        '''finite state machine'''
-        if self.state == 'idle':
-            if event == 'focusin':
-                self._call_popup()
-                self.state = 'virtualkeyboard'
-        elif self.state == 'virtualkeyboard':
-            if event == 'focusin':
-                self._destroy_popup()
-                self.state = 'typing'
-            elif event == 'keypress':
-                self._destroy_popup()
-                self.state = 'typing'
-        elif self.state == 'typing':
-            if event == 'focusout':
-                self.state = 'idle'
-
-    def _call_popup(self):
-        self.kb = _PopupKeyboard(attach=self.entry,
-                                 parent=self.parent,
-                                 x=self.entry.winfo_rootx(),
-                                 y=self.entry.winfo_rooty() + self.entry.winfo_reqheight(),
-                                 keysize=self.keysize,
-                                 keycolor=self.keycolor)
-
-    def _destroy_popup(self):
-        self.kb._destroy_popup()
-
-
-def test():
-    root = Tk()
-    KeyboardEntry(root, keysize=6, keycolor='white').pack()
-    KeyboardEntry(root).pack()
-    root.mainloop()
-Tk.KeyboardEntry(parent, keysize=5, keycolor='white').pack()
+class On_screen_keyboard:
+    window = Tk()
+    window.geometry("500x500")
+    window.title("Keyboard")
+    def __init__(self):
+        self.keyboard()
+    ButtonQ = Button(window, text="q", relief=FLAT, height=2, width=2, background= "light blue").place(x=0, y=300)
+    ButtonW = Button(window, text="w", relief=FLAT, height=2, width=2, background="light blue").place(x=25, y=300)
+    ButtonE = Button(window, text="e", relief=FLAT, height=2, width=2, background="light blue").place(x=50, y=300)
+    ButtonR = Button(window, text="r", relief=FLAT, height=2, width=2, background="light blue").place(x=75, y=300)
+    ButtonT = Button(window, text="t", relief=FLAT, height=2, width=2, background="light blue").place(x=100, y=300)
+    ButtonY = Button(window, text="y", relief=FLAT, height=2, width=2, background="light blue").place(x=125, y=300)
+    ButtonU = Button(window, text="u", relief=FLAT, height=2, width=2, background="light blue").place(x=150, y=300)
+    ButtonI = Button(window, text="i", relief=FLAT, height=2, width=2, background="light blue").place(x=175, y=300)
+    ButtonO = Button(window, text="o", relief=FLAT, height=2, width=2, background="light blue").place(x=200, y=300)
+    ButtonP = Button(window, text="p", relief=FLAT, height=2, width=2, background="light blue").place(x=225, y=300)
+    ButtonA = Button(window, text="a", relief=FLAT, height=2, width=2, background="light blue").place(x=0, y=345)
+    ButtonS = Button(window, text="s", relief=FLAT, height=2, width=2, background="light blue").place(x=25, y=345)
+    ButtonD = Button(window, text="d", relief=FLAT, height=2, width=2, background="light blue").place(x=50, y=345)
+    ButtonF = Button(window, text="f", relief=FLAT, height=2, width=2, background="light blue").place(x=75, y=345)
+    ButtonG = Button(window, text="g", relief=FLAT, height=2, width=2, background="light blue").place(x=100, y=345)
+    ButtonH = Button(window, text="h", relief=FLAT, height=2, width=2, background="light blue").place(x=125, y=345)
+    ButtonJ = Button(window, text="j", relief=FLAT, height=2, width=2, background="light blue").place(x=150, y=345)
+    ButtonK = Button(window, text="k", relief=FLAT, height=2, width=2, background="light blue").place(x=175, y=345)
+    ButtonL = Button(window, text="l", relief=FLAT, height=2, width=2, background="light blue").place(x=200, y=345)
+    Buttonç = Button(window, text="ç", relief=FLAT, height=2, width=2, background="light blue").place(x=225, y=345)
+    ButtonZ = Button(window, text="z", relief=FLAT, height=2, width=2, background="light blue").place(x=0, y=390)
+    ButtonX = Button(window, text="x", relief=FLAT, height=2, width=2, background="light blue").place(x=25, y=390)
+    ButtonC = Button(window, text="c", relief=FLAT, height=2, width=2, background="light blue").place(x=50, y=390)
+    ButtonV = Button(window, text="v", relief=FLAT, height=2, width=2, background="light blue").place(x=75, y=390)
+    ButtonB = Button(window, text="b", relief=FLAT, height=2, width=2, background="light blue").place(x=100, y=390)
+    ButtonN = Button(window, text="n", relief=FLAT, height=2, width=2, background="light blue").place(x=125, y=390)
+    ButtonM = Button(window, text="m", relief=FLAT, height=2, width=2, background="light blue").place(x=150, y=390)
+    ButtonSpace = Button(window, text=" ", relief=FLAT, height=2, width=10, background="light blue").place(x=100, y=435)
+window.mainloop()
