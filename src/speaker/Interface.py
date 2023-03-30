@@ -1,0 +1,60 @@
+from tkinter import *
+import Terminal
+import Editor
+import string
+
+class Interface:
+    methods_terminal = Terminal.Terminal()
+    window = Tk()
+    methods_editor = Editor.Editor()
+    window.geometry("500x500")
+    text_field = Entry(window, width=50)
+    def get_mensage(self, text):
+        pharse = text_field.get()
+        text_field.delete(0, END)
+        text_field.insert(str(pharse) + str(text))
+        return
+    window.title("Speak")
+
+    buttonSpeake = window.button = Button(window, text="Speak", height=20, width=10).grid(row=0, column=10)
+    ButtonQ = Button(window, text="q", relief=FLAT, height=2, width=2, background="light blue",  command= lambda :  get_mensage()).place(x=0, y=300)
+    ButtonW = Button(window, text="w", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("w")).place(x=25, y=300)
+    ButtonE = Button(window, text="e", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("e")).place(x=50, y=300)
+    ButtonR = Button(window, text="r", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("r")).place(x=75, y=300)
+    ButtonT = Button(window, text="t", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("t")).place(x=100, y=300)
+    ButtonY = Button(window, text="y", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("y")).place(x=125, y=300)
+    ButtonU = Button(window, text="u", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("u")).place(x=150, y=300)
+    ButtonI = Button(window, text="i", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("i")).place(x=175, y=300)
+    ButtonO = Button(window, text="o", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("o")).place(x=200, y=300)
+    ButtonP = Button(window, text="p", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("p")).place(x=225, y=300)
+    ButtonA = Button(window, text="a", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("a")).place(x=0, y=345)
+    ButtonS = Button(window, text="s", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("s")).place(x=25, y=345)
+    ButtonD = Button(window, text="d", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("d")).place(x=50, y=345)
+    ButtonF = Button(window, text="f", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("f")).place(x=75, y=345)
+    ButtonG = Button(window, text="g", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("g")).place(x=100, y=345)
+    ButtonH = Button(window, text="h", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("h")).place(x=125, y=345)
+    ButtonJ = Button(window, text="j", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("j")).place(x=150, y=345)
+    ButtonK = Button(window, text="k", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("k")).place(x=175, y=345)
+    ButtonL = Button(window, text="l", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("l")).place(x=200, y=345)
+    Buttonç = Button(window, text="ç", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("ç")).place(x=225, y=345)
+    ButtonZ = Button(window, text="z", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("z")).place(x=0, y=390)
+    ButtonX = Button(window, text="x", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("x")).place(x=25, y=390)
+    ButtonC = Button(window, text="c", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("c")).place(x=50, y=390)
+    ButtonV = Button(window, text="v", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("v")).place(x=75, y=390)
+    ButtonB = Button(window, text="b", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("b")).place(x=100, y=390)
+    ButtonN = Button(window, text="n", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("n")).place(x=125, y=390)
+    ButtonM = Button(window, text="m", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage("m")).place(x=150, y=390)
+    ButtonSpace = Button(window, text=" ", relief=FLAT, height=2, width=10, background="light blue", command= lambda : get_mensage("")).place(x=75, y=435)
+    ButtonSeven = Button(window, text="7", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage(7)).place(x=300, y=345)
+    ButtonEight = Button(window, text="8", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage(8)).place(x=325, y=345)
+    ButtonNine = Button(window, text="9", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage(9)).place(x=350, y=345)
+    ButtonSix = Button(window, text="6", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage(6)).place(x=350, y=390)
+    ButtonFive = Button(window, text="5", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage(5)).place(x=325, y=390)
+    ButtonFour = Button(window, text="4", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage(4)).place(x=300, y=390)
+    ButtonThree = Button(window, text="3", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage(3)).place(x=350, y=435)
+    ButtonTwo = Button(window, text="2", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage(2)).place(x=325, y=435)
+    ButtonOne = Button(window, text="1", relief=FLAT, height=2, width=2, background="light blue", command= lambda : get_mensage(1)).place(x=300, y=435)
+
+    window.mainloop()
+if __name__ == "__main__":
+    Interface()
