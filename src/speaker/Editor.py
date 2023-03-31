@@ -1,4 +1,4 @@
-import TextBlob
+#import TextBlob
 #class Editor():
     # def __init__(self):
     #     pass
