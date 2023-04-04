@@ -5,6 +5,20 @@ import Terminal
 # import Editor
 def __init__(self):
     self.amount_of_words = 0
+    self.bar = tk.Frame(root, width=70, height=20, background="red")
+    self.letterA = tk.Button(self.bar, text="a", height=1, width=1, background="light blue",
+                        command=lambda: control_syllable_bar("a", self.letterA)).grid(row=0, column=0)
+    self.letterE = tk.Button(self.bar, text="e", height=1, width=1, background="light blue",
+                        command=lambda: control_syllable_bar("e", self.letterE)).grid(row=0, column=1)
+    self.letterI = tk.Button(self.bar, text="i", height=1, width=1, background="light blue",
+                        command=lambda: print_value("i", text_field)).grid(row=0, column=2)
+    self.letterO = tk.Button(self.bar, text="o", height=1, width=1, background="light blue",
+                        command=lambda: control_syllable_bar("o", text_field)).grid(row=0, column=3)
+    self.letterU = tk.Button(self.bar, text="u", height=1, width=1, background="light blue",
+                        command=lambda: control_syllable_bar("u", text_field)).grid(row=0, column=4)
+
+    self.tterAO = tk.Button(self.bar, text="ão", height=1, width=1, background="light blue",
+                         command=lambda: control_syllable_bar("ão", self.letterAO)).grid(row=0, column=5)
 
 
 root = tk.Tk()
@@ -140,19 +154,23 @@ def clear_text(textarea):
     textarea.delete("1.0", tk.END)
 
 
+def control_syllable_bar(syllable, windget):
+    print_value(syllable, text_field)
+    hide_syllable_bar(windget)
+def syllable_bar(self,x, y):
 
-def syllable_bar(x, y):
+    self.bar = tk.Frame(root, width=70, height=20, background="red")
+    self.bar.place(x=x-5, y=y-5)
+    self.letterA = tk.Button(self.bar, text="a", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("a", self.letterA)).grid(row=0, column=0)
+    self.letterE = tk.Button(self.bar, text="e", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("e", self.letterE)).grid(row=0, column=1)
+    self.letterI = tk.Button(self.bar, text="i", height=1, width=1, background="light blue", command=lambda: print_value("i", text_field)).grid(row=0, column=2)
+    self.letterO = tk.Button(self.bar, text="o", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("o", text_field)).grid(row=0, column=3)
+    self.letterU = tk.Button(self.bar, text="u", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("u", text_field)).grid(row=0, column=4)
 
-    bar = tk.Frame(root, width=70, height=20, background="red")
-    bar.place(x=x-5, y=y-5)
-    letterA = tk.Button(root, text="a", height=1, width=1, background="light blue", command=lambda: print_value("a", text_field)).place(x=x-5, y=y-5)
-    letterE = tk.Button(root, text="e", height=1, width=1, background="light blue", command=lambda: print_value("e", text_field)).place(x=x+15, y=y-5)
-    letterI = tk.Button(root, text="i", height=1, width=1, background="light blue", command=lambda: print_value("i", text_field)).place(x=x+35, y=y-5)
-    letterO = tk.Button(root, text="o", height=1, width=1, background="light blue", command=lambda: print_value("o", text_field)).place(x=x+55, y=y-5)
-    letterU = tk.Button(root, text="u", height=1, width=1, background="light blue", command=lambda: print_value("u", text_field)).place(x=x+75, y=y-5)
+    self.letterAO = tk.Button(self.bar, text="ão", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("ão", self.letterAO)).grid(row=0, column=5)
 
-    letterAO = tk.Button(root, text="ão", height=1, width=1, background="light blue", command=lambda: print_value("ão", text_field)).place(x=x+95, y=y-5)
-def hide_syllable_bar(element):
-    element.destroy()
+def hide_syllable_bar(button):
+    button.grid_forget()
+
 
 root.mainloop()
