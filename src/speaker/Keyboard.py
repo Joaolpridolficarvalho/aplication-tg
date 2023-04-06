@@ -5,20 +5,7 @@ import Terminal
 # import Editor
 def __init__(self):
     self.amount_of_words = 0
-    self.bar = tk.Frame(root, width=70, height=20, background="red")
-    self.letterA = tk.Button(self.bar, text="a", height=1, width=1, background="light blue",
-                        command=lambda: control_syllable_bar("a", self.letterA)).grid(row=0, column=0)
-    self.letterE = tk.Button(self.bar, text="e", height=1, width=1, background="light blue",
-                        command=lambda: control_syllable_bar("e", self.letterE)).grid(row=0, column=1)
-    self.letterI = tk.Button(self.bar, text="i", height=1, width=1, background="light blue",
-                        command=lambda: print_value("i", text_field)).grid(row=0, column=2)
-    self.letterO = tk.Button(self.bar, text="o", height=1, width=1, background="light blue",
-                        command=lambda: control_syllable_bar("o", text_field)).grid(row=0, column=3)
-    self.letterU = tk.Button(self.bar, text="u", height=1, width=1, background="light blue",
-                        command=lambda: control_syllable_bar("u", text_field)).grid(row=0, column=4)
 
-    self.tterAO = tk.Button(self.bar, text="ão", height=1, width=1, background="light blue",
-                         command=lambda: control_syllable_bar("ão", self.letterAO)).grid(row=0, column=5)
 
 
 root = tk.Tk()
@@ -39,7 +26,7 @@ sugestion7 = tk.Text(root, height=5, width=10).place(x=600, y=260)
 sugestion8 = tk.Text(root, height=5, width=10).place(x=700, y=260)
 sugestion9 = tk.Text(root, height=5, width=10).place(x=800, y=260)
 ButtonQ = tk.Button(root, text="q", height=2, width=2, background="light blue",
-                    command=lambda:[ print_value("q", text_field), syllable_bar(0,300)]).place(x=0, y=300)
+                    command=lambda:control_button("q", text_field, 0,300)].place(x=0, y=300)
 ButtonW = tk.Button(root, text="w", height=2, width=2, background="light blue",
                     command=lambda: print_value("w", text_field)).place(x=25, y=300)
 ButtonE = tk.Button(root, text="e", height=2, width=2, background="light blue",
@@ -69,33 +56,33 @@ ButtonD = tk.Button(root, text="d", height=2, width=2, background="light blue",
 ButtonF = tk.Button(root, text="f", height=2, width=2, background="light blue",
                     command=lambda: print_value("f", text_field)).place(x=75, y=345)
 ButtonG = tk.Button(root, text="g", height=2, width=2, background="light blue",
-                    command=lambda: print_value("g", text_field)).place(x=100, y=345)
+                    command=lambda:control_button("g", text_field, 100,345)).place(x=100, y=345)
 ButtonH = tk.Button(root, text="h", height=2, width=2, background="light blue",
-                    command=lambda: print_value("h", text_field)).place(x=125, y=345)
+                    command=lambda:[ print_value("h", text_field),syllable_bar(125,345)]).place(x=125, y=345)
 ButtonJ = tk.Button(root, text="j", height=2, width=2, background="light blue",
-                    command=lambda: print_value("j", text_field)).place(x=150, y=345)
+                    command=lambda:control_button("j", text_field, 150,345)).place(x=150, y=345)
 ButtonK = tk.Button(root, text="k", height=2, width=2, background="light blue",
-                    command=lambda: print_value("k", text_field)).place(x=175, y=345)
+                    command=lambda:control_button("k", text_field, 175,345)).place(x=175, y=345)
 ButtonL = tk.Button(root, text="l", height=2, width=2, background="light blue",
-                    command=lambda: print_value("l", text_field)).place(x=200, y=345)
+                    command=lambda:control_button("l", text_field, 200,345)).place(x=200, y=345)
 Buttonç = tk.Button(root, text="ç", height=2, width=2, background="light blue",
-                    command=lambda: print_value("ç", text_field)).place(x=225, y=345)
+                    command=lambda:control_button("ç", text_field, 225,345)).place(x=225, y=345)
 ButtonEnter = tk.Button(root, text="Enter", height=2, width=10, background="light blue",
                         command=lambda: print_value("\n", text_field)).place(x=250, y=345)
 ButtonZ = tk.Button(root, text="z", height=2, width=2, background="light blue",
-                    command=lambda: print_value("z", text_field)).place(x=0, y=390)
+                    command=lambda:[ print_value("z", text_field) , syllable_bar(0,390)]).place(x=0, y=390)
 ButtonX = tk.Button(root, text="x", height=2, width=2, background="light blue",
-                    command=lambda: print_value("x", text_field)).place(x=25, y=390)
+                    command=lambda:control_button("x", text_field, 25,390)).place(x=25, y=390)
 ButtonC = tk.Button(root, text="c", height=2, width=2, background="light blue",
-                    command=lambda: print_value("c", text_field)).place(x=50, y=390)
+                    command=lambda: control_button("c", text_field, 50,390)).place(x=50, y=390)
 ButtonV = tk.Button(root, text="v", height=2, width=2, background="light blue",
-                    command=lambda: print_value("v", text_field)).place(x=75, y=390)
+                    command=lambda: control_button("v", text_field, 75,390)).place(x=75, y=390)
 ButtonB = tk.Button(root, text="b", height=2, width=2, background="light blue",
-                    command=lambda: print_value("b", text_field)).place(x=100, y=390)
+                    command=lambda: control_button("b", text_field, 100,390]).place(x=100, y=390)
 ButtonN = tk.Button(root, text="n", height=2, width=2, background="light blue",
-                    command=lambda: print_value("n", text_field)).place(x=125, y=390)
+                    command=lambda:control_button("n", text_field, 125, 390)).place(x=125, y=390)
 ButtonM = tk.Button(root, text="m", height=2, width=2, background="light blue",
-                    command=lambda:[ print_value("m", text_field), syllable_bar(150, 390) ]).place(x=150, y=390)
+                    command=lambda:control_button("m", text_field,150,390)).place(x=150, y=390)
 ButtonComma = tk.Button(root, text=",", height=2, width=2, background="light blue",
                         command=lambda: print_value(",", text_field)).place(x=175, y=390)
 ButtonDot = tk.Button(root, text=".", height=2, width=2, background="light blue",
@@ -154,23 +141,56 @@ def clear_text(textarea):
     textarea.delete("1.0", tk.END)
 
 
-def control_syllable_bar(syllable, windget):
+def control_syllable_bar(syllable):
     print_value(syllable, text_field)
-    hide_syllable_bar(windget)
-def syllable_bar(self,x, y):
+    hide_syllable_bar()
+def syllable_bar(x, y):
 
-    self.bar = tk.Frame(root, width=70, height=20, background="red")
-    self.bar.place(x=x-5, y=y-5)
-    self.letterA = tk.Button(self.bar, text="a", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("a", self.letterA)).grid(row=0, column=0)
-    self.letterE = tk.Button(self.bar, text="e", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("e", self.letterE)).grid(row=0, column=1)
-    self.letterI = tk.Button(self.bar, text="i", height=1, width=1, background="light blue", command=lambda: print_value("i", text_field)).grid(row=0, column=2)
-    self.letterO = tk.Button(self.bar, text="o", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("o", text_field)).grid(row=0, column=3)
-    self.letterU = tk.Button(self.bar, text="u", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("u", text_field)).grid(row=0, column=4)
+    global bar
+    bar= tk.Frame(root, width=70, height=20, background="red")
+    bar.place(x=x-5, y=y-5)
+    global letterA
+    letterA= tk.Button(bar, text="a", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("a")).grid(row=0, column=0)
+    global letterE
+    letterE= tk.Button(bar, text="e", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("e")).grid(row=0, column=1)
+    global letterI
+    letterI = tk.Button(bar, text="i", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("i")).grid(row=0, column=2)
+    global letterO
+    letterO= tk.Button(bar, text="o", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("o")).grid(row=0, column=3)
+    global letterU
+    letterU= tk.Button(bar, text="u", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("u")).grid(row=0, column=4)
 
-    self.letterAO = tk.Button(self.bar, text="ão", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("ão", self.letterAO)).grid(row=0, column=5)
+    global letterAO
+    letterAO= tk.Button(bar, text="ão", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("ão", )).grid(row=0, column=5)
 
-def hide_syllable_bar(button):
-    button.grid_forget()
+def hide_syllable_bar():
+    bar.destroy()
+    letterA.destroy()
+    letterE.destroy()
+    letterI.destroy()
+    letterO.destroy()
+    letterU.destroy()
+    letterAO.destroy()
+
+def control_button(value, textarea, x, y):
+    try:
+        hide_syllable_bar()
+    finally:
+        print_value(value, textarea)
+        syllable_bar(x, y)
 
 
 root.mainloop()
+
+
+
+
+
+
+
+
+
+
+
+
+
