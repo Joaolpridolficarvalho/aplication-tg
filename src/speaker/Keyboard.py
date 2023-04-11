@@ -48,7 +48,9 @@ ButtonP = tk.Button(root, text="p", height=2, width=2, background="light blue",
 ButtonBackspace = tk.Button(root, text="Backspace", height=2, width=10, background="light blue",
                             command=lambda: backspace(text_field)).place(x=250, y=300)
 ButtonA = tk.Button(root, text="a", height=2, width=2, background="light blue",
-                    command=lambda: control_button("a", text_field, 0, 345)).place(x=0, y=345)
+                    command=lambda: control_button("a", text_field, 0, 345))
+ButtonA.bind("<Button-3>", lambda event: control_accents("a", 0, 345))
+ButtonA.place(x=0, y=345)
 ButtonS = tk.Button(root, text="s", height=2, width=2, background="light blue",
                     command=lambda: control_button("s", text_field, 25, 345)).place(x=25, y=345)
 ButtonD = tk.Button(root, text="d", height=2, width=2, background="light blue",
@@ -110,7 +112,6 @@ ButtonOne = tk.Button(root, text="1", height=2, width=2, background="light blue"
 ButtonZero = tk.Button(root, text="0", height=2, width=2, background="light blue",
                        command=lambda: print_value(0, text_field)).place(x=325, y=435)
 
-ButtonA.bind("<Button-1>", lambda event: (acents(0,345)))
 
 def print_value(value, textarea):
     value = str(value)
@@ -162,7 +163,7 @@ def syllable_bar(x, y):
     letterU= tk.Button(bar, text="u", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("u")).grid(row=0, column=4)
 
     global letterAO
-    letterAO= tk.Button(bar, text="ão", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("ão", )).grid(row=0, column=5)
+    letterAO= tk.Button(bar, text="ão", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("ão")).grid(row=0, column=5)
 
 def hide_syllable_bar():
     bar.destroy()
@@ -208,26 +209,63 @@ def buttonQ(x, y):
     global letterUAO
     letterUAO= tk.Button(bar, text="uão", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("uão")).grid(row=0, column=5)
 
-def accents(x, y):
+def accents_bar(x, y, letter):
     global bar
     bar= tk.Frame(root, width=70, height=20, background="red")
     bar.place(x=x-5, y=y-5)
     global agud
-    agud= tk.Button(bar, text="´", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("´")).grid(row=0, column=0)
+    agud= tk.Button(bar, text="´", height=1, width=1, background="light blue", command=lambda: set_accents("´", letter)).grid(row=0, column=0)
     global circumflex
-    circumflex= tk.Button(bar, text="^", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("^")).grid(row=0, column=1)
+    circumflex= tk.Button(bar, text="^", height=1, width=1, background="light blue", command=lambda: set_accents("^", letter)).grid(row=0, column=1)
     global tilde
-    tilde= tk.Button(bar, text="~", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("~")).grid(row=0, column=2)
+    tilde= tk.Button(bar, text="~", height=1, width=1, background="light blue", command=lambda: set_accents("~", letter)).grid(row=0, column=2)
     global crasis
-    crasis= tk.Button(bar, text="`", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("`")).grid(row=0, column=3)
+    crasis= tk.Button(bar, text="`", height=1, width=1, background="light blue", command=lambda: set_accents("`", letter)).grid(row=0, column=3)
     global trema
-    trema= tk.Button(bar, text="¨", height=1, width=1, background="light blue", command=lambda: control_syllable_bar("¨")).grid(row=0, column=4)
+    trema= tk.Button(bar, text="¨", height=1, width=1, background="light blue", command=lambda: set_accents("¨", letter)).grid(row=0, column=4)
 def set_accents(accent, letter):
-    letter = accent+letter
-def control_accents(accent, letter, x, y):
-    try:
-        hide_sy
+    if letter == "a" and accent == "´":
+        print_value("á", text_field)
+    elif letter == "a" and accent == "^":
+        print_value("â", text_field)
+    elif letter == "a" and accent == "~":
+        print_value("ã", text_field)
+    elif letter == "a" and accent == "`":
+        print_value("à", text_field)
+    elif letter == "a" and accent == "¨":
+        print_value("á", text_field)
+    elif letter == "e" and accent == "´":
+        print_value("é", text_field)
+    elif letter == "e" and accent == "^":
+        print_value("ê", text_field)
+    elif letter == "e" and accent == "~":
+        print_value("ẽ", text_field)
+    elif letter == "e" and accent == "`":
+        print_value("è", text_field)
+    elif letter == "e" and accent == "¨":
+        print_value("é", text_field)
+    elif letter == "i" and accent == "´":
+        print_value("í", text_field)
+    elif letter == "i" and accent == "^":
+        print_value("î", text_field)
+    elif letter == "i" and accent == "~":
+        print_value("ĩ", text_field)
 
+
+def control_accents(letter, x, y):
+    try:
+        hide_syllable_bar()
+        hide_accents()
+    finally:
+        accents_bar(x, y, letter)
+
+def hide_accents():
+    bar.destroy()
+    agud.destroy()
+    circumflex.destroy()
+    tilde.destroy()
+    crasis.destroy()
+    trema.destroy()
 
 
 root.mainloop()
