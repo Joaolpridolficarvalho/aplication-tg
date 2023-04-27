@@ -13,6 +13,7 @@ class Interface:
     root.title("Keyboard")
     text_field = tk.Text(root, height=10, width=20, font=("Arial", 18))
     text_field.place(x=0, y=0)
-    keyboard = tk.Frame(root, height=300, width=1024, bg="light blue").place(x=0, y=300)
-    keyboard = Keyboard.Keyboard(keyboard)
+    keyboard = Keyboard.Keyboard(root)
+    #Keyboard.place( 0, 300)
+
     root.mainloop()

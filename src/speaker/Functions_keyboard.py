@@ -3,8 +3,9 @@ import tkinter as tk
 
 
 class Functions_keyboard:
-    def __init__(self):
+    def __init__(self, root):
         super().__init__()
+        self.root = root
     def print_value(self, value, text_field):
         self.value = str(value)
         text_field.insert(tk.END, self.value)
@@ -31,17 +32,17 @@ class Functions_keyboard:
         text_field.delete("end-2c")
 
 
-    def clear_text(text_field):
+    def clear_text(self, text_field):
         text_field.delete("1.0", tk.END)
 
 
     def control_syllable_bar(self, syllable, text_field):
         self.print_value(syllable, text_field)
         self.hide_syllable_bar()
-    def syllable_bar(self, x, y, root, text_field):
+    def syllable_bar(self, x, y, text_field):
 
         global bar
-        bar= tk.Frame(root, width=70, height=20, background="red")
+        bar= tk.Frame(self.root, width=70, height=20, background="red")
         bar.place(x=x-5, y=y-5)
         global letterA
         letterA= tk.Button(bar, text="a", height=1, width=1, background="light blue", command=lambda: self.control_syllable_bar("a", text_field)).grid(row=0, column=0)
@@ -73,17 +74,17 @@ class Functions_keyboard:
             letterU.destroy()
             letterAO.destroy()
 
-    def control_button(self, value, text_field, x, y, root):
+    def control_button(self, value, text_field, x, y):
         self.print_value(value, text_field)
         if value == "q":
-            self.buttonQ(x, y, root, text_field)
+            self.buttonQ(x, y, text_field)
         else:
-            self.syllable_bar(x, y, root, text_field)
+            self.syllable_bar(x, y, text_field)
         self.hide_syllable_bar()
-    def buttonQ(self, x, y, root, text_field):
+    def buttonQ(self, x, y, text_field):
 
         global bar
-        bar = tk.Frame(root, width=70, height=20, background="red")
+        bar = tk.Frame(self.root, width=70, height=20, background="red")
         bar.place(x=x-5, y=y-5)
         global letterUA
         letterUA= tk.Button(bar, text="a", height=1, width=1, background="light blue", command=lambda: self.control_syllable_bar("ua", text_field)).grid(row=0, column=0)
@@ -99,9 +100,9 @@ class Functions_keyboard:
         global letterUAO
         letterUAO= tk.Button(bar, text="uão", height=1, width=1, background="light blue", command=lambda: self.control_syllable_bar("uão", text_field)).grid(row=0, column=5)
 
-    def accents_bar(self, x, y, letter, root, text_field):
+    def accents_bar(self, x, y, letter, text_field):
         global bar
-        bar= tk.Frame(root, width=70, height=20, background="red")
+        bar= tk.Frame(self.root, width=70, height=20, background="red")
         bar.place(x=x-5, y=y-5)
         global agud
         agud= tk.Button(bar, text="´", height=1, width=1, background="light blue", command=lambda: self.set_accents("´", letter, text_field)).grid(row=0, column=0)
@@ -177,8 +178,8 @@ class Functions_keyboard:
             self.print_value("ü", text_field)
             self.hide_accents()
 
-    def control_accents(self, letter, x, y, root, text_field):
-       self.accents_bar(x, y, letter, root, text_field)
+    def control_accents(self, letter, x, y, text_field):
+       self.accents_bar(x, y, letter, text_field)
 
 
     def hide_accents(self):
