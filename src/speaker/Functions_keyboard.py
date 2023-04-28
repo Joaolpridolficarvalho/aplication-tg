@@ -28,6 +28,9 @@ class Functions_keyboard:
     def backspace(self, text_field):
         text_field.delete("end-2c")
 
+    def change_position_cursor(self, text_field, event=None, new_position_cursor=1):
+        position_cursor = text_field.index("insert")
+        text_field.icursor(position_cursor + new_position_cursor)
     def clear_text(self, text_field):
         text_field.delete("1.0", tk.END)
 
@@ -92,19 +95,19 @@ class Functions_keyboard:
         bar = tk.Frame(self.root, width=70, height=20, background="red")
         bar.place(x=x - 5, y=y - 5)
         global letterUA
-        letterUA = tk.Button(bar, text="a", height=1, width=1, background="light blue",
+        letterUA = tk.Button(bar, text="ua", height=1, width=1, background="light blue",
                              command=lambda: self.control_syllable_bar("ua", text_field)).grid(row=0, column=0)
         global letterUE
-        letterUE = tk.Button(bar, text="e", height=1, width=1, background="light blue",
+        letterUE = tk.Button(bar, text="ue", height=1, width=1, background="light blue",
                              command=lambda: self.control_syllable_bar("ue", text_field)).grid(row=0, column=1)
         global letterUI
-        letterUI = tk.Button(bar, text="i", height=1, width=1, background="light blue",
+        letterUI = tk.Button(bar, text="ui", height=1, width=1, background="light blue",
                              command=lambda: self.control_syllable_bar("ui", text_field)).grid(row=0, column=2)
         global letterUO
-        letterUO = tk.Button(bar, text="o", height=1, width=1, background="light blue",
+        letterUO = tk.Button(bar, text="uo", height=1, width=1, background="light blue",
                              command=lambda: self.control_syllable_bar("uo", text_field)).grid(row=0, column=3)
         global letterU
-        letterU = tk.Button(bar, text="u", height=1, width=1, background="light blue",
+        letterU = tk.Button(bar, text="uu", height=1, width=1, background="light blue",
                             command=lambda: self.control_syllable_bar("u", text_field)).grid(row=0, column=4)
 
         global letterUAO
@@ -196,7 +199,10 @@ class Functions_keyboard:
             self.hide_accents()
 
     def control_accents(self, letter, x, y, text_field):
-        self.accents_bar(x, y, letter, text_field)
+        try:
+            self.hide_syllable_bar()
+        finally:
+            self.accents_bar(x, y, letter, text_field)
 
     def hide_accents(self):
         bar.destroy()
