@@ -4,25 +4,20 @@ import Functions_keyboard
 
 # import Editor
 class Keyboard:
-    def __init__(self, frame_keyboard):
+    def __init__(self, frame_keyboard, text_field):
         self.amount_of_words = 0
         terminal = Terminal.Terminal()
         fk = Functions_keyboard.Functions_keyboard(frame_keyboard)
 
-
-        text_field = tk.Text(frame_keyboard, height=10, width=20, font=("Arial", 18))
-        text_field.place(x=0, y=0)
-        buttonSpeake = tk.Button(frame_keyboard, text="Speak", height=20, width=10,
-                                 command=lambda: terminal.speake(fk.get_text(text_field))).place(x=410, y=0)
-        sugestion1 = tk.Text(frame_keyboard, height=5, width=10).place(x=0, y=260)
-        sugestion2 = tk.Text(frame_keyboard, height=5, width=10).place(x=100, y=260)
-        sugestion3 = tk.Text(frame_keyboard, height=5, width=10).place(x=200, y=260)
-        sugestion4 = tk.Text(frame_keyboard, height=5, width=10).place(x=300, y=260)
-        sugestion5 = tk.Text(frame_keyboard, height=5, width=10).place(x=400, y=260)
-        sugestion6 = tk.Text(frame_keyboard, height=5, width=10).place(x=500, y=260)
-        sugestion7 = tk.Text(frame_keyboard, height=5, width=10).place(x=600, y=260)
-        sugestion8 = tk.Text(frame_keyboard, height=5, width=10).place(x=700, y=260)
-        sugestion9 = tk.Text(frame_keyboard, height=5, width=10).place(x=800, y=260)
+        # sugestion1 = tk.Text(frame_keyboard, height=5, width=10).place(x=0, y=260)
+        # sugestion2 = tk.Text(frame_keyboard, height=5, width=10).place(x=100, y=260)
+        # sugestion3 = tk.Text(frame_keyboard, height=5, width=10).place(x=200, y=260)
+        # sugestion4 = tk.Text(frame_keyboard, height=5, width=10).place(x=300, y=260)
+        # sugestion5 = tk.Text(frame_keyboard, height=5, width=10).place(x=400, y=260)
+        # sugestion6 = tk.Text(frame_keyboard, height=5, width=10).place(x=500, y=260)
+        # sugestion7 = tk.Text(frame_keyboard, height=5, width=10).place(x=600, y=260)
+        # sugestion8 = tk.Text(frame_keyboard, height=5, width=10).place(x=700, y=260)
+        # sugestion9 = tk.Text(frame_keyboard, height=5, width=10).place(x=800, y=260)
         ButtonQ = tk.Button(frame_keyboard, text="q", height=2, width=2, background="light blue",
                             command=lambda: fk.control_button("q", text_field, 0, 300)).place(x=0, y=300)
         ButtonW = tk.Button(frame_keyboard, text="w", height=2, width=2, background="light blue",
