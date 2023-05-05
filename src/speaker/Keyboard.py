@@ -9,15 +9,7 @@ class Keyboard:
         terminal = Terminal.Terminal()
         fk = Functions_keyboard.Functions_keyboard(frame_keyboard)
 
-        # sugestion1 = tk.Text(frame_keyboard, height=5, width=10).place(x=0, y=260)
-        # sugestion2 = tk.Text(frame_keyboard, height=5, width=10).place(x=100, y=260)
-        # sugestion3 = tk.Text(frame_keyboard, height=5, width=10).place(x=200, y=260)
-        # sugestion4 = tk.Text(frame_keyboard, height=5, width=10).place(x=300, y=260)
-        # sugestion5 = tk.Text(frame_keyboard, height=5, width=10).place(x=400, y=260)
-        # sugestion6 = tk.Text(frame_keyboard, height=5, width=10).place(x=500, y=260)
-        # sugestion7 = tk.Text(frame_keyboard, height=5, width=10).place(x=600, y=260)
-        # sugestion8 = tk.Text(frame_keyboard, height=5, width=10).place(x=700, y=260)
-        # sugestion9 = tk.Text(frame_keyboard, height=5, width=10).place(x=800, y=260)
+
         ButtonQ = tk.Button(frame_keyboard, text="q", height=2, width=2, background="light blue",
                             command=lambda: fk.control_button("q", text_field, 0, 300)).place(x=0, y=300)
         ButtonW = tk.Button(frame_keyboard, text="w", height=2, width=2, background="light blue",
