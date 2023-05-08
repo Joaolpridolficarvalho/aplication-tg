@@ -8,7 +8,7 @@ class Terminal:
     def __init__(self):
         self.folder = Path(r"C:\Users\Joao\Downloads\balcon")
 
-    def speake(self, text):
+    def speak(self, text):
         subprocess.run(['cmd', '/c', 'start', '/D', self.folder, 'balcon.exe', '-t', text])
 
     def change_voice(self, voice):
