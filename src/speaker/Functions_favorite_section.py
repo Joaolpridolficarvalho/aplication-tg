@@ -7,7 +7,6 @@ class Functions_favorite_section:
         self.frame_favorite = frame_favorite
         self.path = path
         self.fm = fm.File_manager(self.path)
-        self.show_favorite()
         self.fk = fk.Functions_keyboard()
         self.favorite = []
 
@@ -20,12 +19,8 @@ class Functions_favorite_section:
         text = self.fk.get_text(text_field)
         self.fm.delete_sentence(text)
         self.show_favorite()
-
-
-
-
     def show_favorite(self):
-        for item, h in range(0,self.fm.get_sentence()), range(35, self.fm.get_sentence(), 5):
+        for item, h in self.fm.get_sentence():
             self.favorite[item] = tk.Button(self.frame_favorite, text=item, height=5, width=10, background="white", font=("Arial", 18)).place(x=0, y=h)
 
 

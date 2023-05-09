@@ -2,16 +2,18 @@ import tkinter as tk
 
 
 class Functions_keyboard:
-    def __init__(self, root=None):
+    def __init__(self, text_field, root=None):
         super().__init__()
         self.root = root
+
+        self.text_field = text_field
 
     def print_value(self, value, text_field):
         self.value = str(value)
         text_field.insert(tk.END, self.value)
 
-    def get_text(self, text_field):
-        text = text_field.get("1.0", tk.END)
+    def get_text(self, text_field=None):
+        text = self.text_field.get_text("1.0", tk.END)
         return text
 
     def get_amout_of_characters(self, text_field):

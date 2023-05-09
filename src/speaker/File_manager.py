@@ -4,7 +4,7 @@ class File_manager:
     def __init__(self, file_name):
         self.file_name = file_name
         self.words = 0
-    def edit_file(self, text, mode="a"):
+    def edit_file(self, text, mode='w'):
         with open(self.file_name, mode) as f:
             text = str(text)
             f.write(text)
@@ -32,7 +32,7 @@ class File_manager:
 
 
 
-path = r"D:\Documentos\teste.txt"
+
 
 
 if __name__ == '__main__':
