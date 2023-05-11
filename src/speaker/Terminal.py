@@ -6,7 +6,7 @@ import subprocess
 class Terminal:
 
     def __init__(self):
-        self.folder = Path(r"C:\Users\Joao\Downloads\balcon")
+        self.folder = Path(r"D:\Downloads\balcon")
 
     def speak(self, text):
         subprocess.run(['cmd', '/c', 'start', '/D', self.folder, 'balcon.exe', '-t', text])

@@ -2,30 +2,20 @@ import tkinter as tk
 
 
 class Functions_keyboard:
-    def __init__(self, text_field, root=None):
+    def __init__(self, root=None):
         super().__init__()
         self.root = root
-
-        self.text_field = text_field
 
     def print_value(self, value, text_field):
         self.value = str(value)
         text_field.insert(tk.END, self.value)
 
-    def get_text(self, text_field=None):
-        text = self.text_field.get_text("1.0", tk.END)
-        return text
+    def get_text(self, text_field):
+        print(type(text_field))
+        # text = text_field.get()
+        # return text
 
-    def get_amout_of_characters(self, text_field):
-        text = self.get_text(text_field)
-        return len(text)
 
-    # def get_sugestion(self):
-    #     sugestion = Editor.predict(get_text(text_field))
-    #     return sugestion
-    # def show_sugestion(self, text_field):
-    #     sugestion = get_sugestion()
-    #     text_field.insert(tk.END, sugestion)
 
     def backspace(self, text_field):
         text_field.delete("end-2c")
@@ -33,6 +23,7 @@ class Functions_keyboard:
     def change_position_cursor(self, text_field, event=None, new_position_cursor=1):
         position_cursor = text_field.index("insert")
         text_field.icursor(position_cursor + new_position_cursor)
+
     def clear_text(self, text_field):
         text_field.delete("1.0", tk.END)
 
@@ -213,4 +204,3 @@ class Functions_keyboard:
         tilde.destroy()
         crasis.destroy()
         trema.destroy()
-
