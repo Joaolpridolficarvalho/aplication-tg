@@ -1,14 +1,21 @@
 import tkinter as tk
 
+from Interface import Interface
+
 
 class Functions_keyboard:
     def __init__(self, root=None):
         super().__init__()
         self.root = root
 
-    def print_value(self, value, text_field):
-        self.value = str(value)
-        text_field.insert(tk.END, self.value)
+
+
+
+
+
+    def print_value(self, value, ):
+        value = str(value)
+        Interface.text_field.insert(tk.END, value)
 
     def get_text(self, text_field):
         print(type(text_field))

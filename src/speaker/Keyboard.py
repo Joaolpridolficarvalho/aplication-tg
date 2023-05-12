@@ -1,14 +1,14 @@
 import tkinter as tk
-import Terminal
+
 import Functions_keyboard
+
 
 # import Editor
 class Keyboard:
     def __init__(self, frame_keyboard, text_field):
         self.amount_of_words = 0
-        terminal = Terminal.Terminal()
-        fk = Functions_keyboard.Functions_keyboard(frame_keyboard)
 
+        fk = Functions_keyboard.Functions_keyboard(frame_keyboard)
 
         ButtonQ = tk.Button(frame_keyboard, text="q", height=2, width=2, background="light blue",
                             command=lambda: fk.control_button("q", text_field, 0, 300)).place(x=0, y=300)
@@ -23,7 +23,7 @@ class Keyboard:
         ButtonT = tk.Button(frame_keyboard, text="t", height=2, width=2, background="light blue",
                             command=lambda: fk.control_button("t", text_field, 100, 300)).place(x=100, y=300)
         ButtonY = tk.Button(frame_keyboard, text="y", height=2, width=2, background="light blue",
-                            command=lambda:fk.control_button("y", text_field, 125, 300)).place(x=125, y=300)
+                            command=lambda: fk.control_button("y", text_field, 125, 300)).place(x=125, y=300)
         ButtonU = tk.Button(frame_keyboard, text="u", height=2, width=2, background="light blue",
                             command=lambda: fk.control_button("u", text_field, 150, 300)).place(x=150, y=300)
         ButtonI = tk.Button(frame_keyboard, text="i", height=2, width=2, background="light blue",
@@ -42,7 +42,7 @@ class Keyboard:
                             command=lambda: fk.control_button("a", text_field, 0, 345))
         ButtonA.bind("<Button-3>", lambda event: fk.control_accents("a", 0, 345, text_field))
         ButtonA.place(x=0, y=345)
-        #testing
+        # testing
         ButtonS = tk.Button(frame_keyboard, text="s", height=2, width=2, background="light blue",
                             command=lambda: fk.control_button("s", text_field, 25, 345)).place(x=25, y=345)
         ButtonD = tk.Button(frame_keyboard, text="d", height=2, width=2, background="light blue",
@@ -50,33 +50,33 @@ class Keyboard:
         ButtonF = tk.Button(frame_keyboard, text="f", height=2, width=2, background="light blue",
                             command=lambda: fk.control_button("f", text_field, 75, 345)).place(x=75, y=345)
         ButtonG = tk.Button(frame_keyboard, text="g", height=2, width=2, background="light blue",
-                            command=lambda:fk.control_button("g", text_field, 100,345)).place(x=100, y=345)
+                            command=lambda: fk.control_button("g", text_field, 100, 345)).place(x=100, y=345)
         ButtonH = tk.Button(frame_keyboard, text="h", height=2, width=2, background="light blue",
-                            command=lambda: fk.control_button("h", text_field, 125,345)).place(x=125, y=345)
+                            command=lambda: fk.control_button("h", text_field, 125, 345)).place(x=125, y=345)
         ButtonJ = tk.Button(frame_keyboard, text="j", height=2, width=2, background="light blue",
-                            command=lambda:fk.control_button("j", text_field, 150,345)).place(x=150, y=345)
+                            command=lambda: fk.control_button("j", text_field, 150, 345)).place(x=150, y=345)
         ButtonK = tk.Button(frame_keyboard, text="k", height=2, width=2, background="light blue",
-                            command=lambda:fk.control_button("k", text_field, 175,345)).place(x=175, y=345)
+                            command=lambda: fk.control_button("k", text_field, 175, 345)).place(x=175, y=345)
         ButtonL = tk.Button(frame_keyboard, text="l", height=2, width=2, background="light blue",
-                            command=lambda:fk.control_button("l", text_field, 200,345)).place(x=200, y=345)
+                            command=lambda: fk.control_button("l", text_field, 200, 345)).place(x=200, y=345)
         Buttonç = tk.Button(frame_keyboard, text="ç", height=2, width=2, background="light blue",
-                            command=lambda:fk.control_button("ç", text_field, 225,345)).place(x=225, y=345)
+                            command=lambda: fk.control_button("ç", text_field, 225, 345)).place(x=225, y=345)
         ButtonEnter = tk.Button(frame_keyboard, text="Enter", height=2, width=10, background="light blue",
                                 command=lambda: fk.print_value("\n", text_field)).place(x=250, y=345)
         ButtonZ = tk.Button(frame_keyboard, text="z", height=2, width=2, background="light blue",
-                            command=lambda: fk.control_button("z", text_field, 0,390)).place(x=0, y=390)
+                            command=lambda: fk.control_button("z", text_field, 0, 390)).place(x=0, y=390)
         ButtonX = tk.Button(frame_keyboard, text="x", height=2, width=2, background="light blue",
-                            command=lambda:fk.control_button("x", text_field, 25,390)).place(x=25, y=390)
+                            command=lambda: fk.control_button("x", text_field, 25, 390)).place(x=25, y=390)
         ButtonC = tk.Button(frame_keyboard, text="c", height=2, width=2, background="light blue",
-                            command=lambda: fk.control_button("c", text_field, 50,390)).place(x=50, y=390)
+                            command=lambda: fk.control_button("c", text_field, 50, 390)).place(x=50, y=390)
         ButtonV = tk.Button(frame_keyboard, text="v", height=2, width=2, background="light blue",
-                            command=lambda: fk.control_button("v", text_field, 75,390)).place(x=75, y=390)
+                            command=lambda: fk.control_button("v", text_field, 75, 390)).place(x=75, y=390)
         ButtonB = tk.Button(frame_keyboard, text="b", height=2, width=2, background="light blue",
-                            command=lambda: fk.control_button("b", text_field, 100,390)).place(x=100, y=390)
+                            command=lambda: fk.control_button("b", text_field, 100, 390)).place(x=100, y=390)
         ButtonN = tk.Button(frame_keyboard, text="n", height=2, width=2, background="light blue",
-                            command=lambda:fk.control_button("n", text_field, 125, 390)).place(x=125, y=390)
+                            command=lambda: fk.control_button("n", text_field, 125, 390)).place(x=125, y=390)
         ButtonM = tk.Button(frame_keyboard, text="m", height=2, width=2, background="light blue",
-                            command=lambda:fk.control_button("m", text_field,150,390)).place(x=150, y=390)
+                            command=lambda: fk.control_button("m", text_field, 150, 390)).place(x=150, y=390)
         ButtonComma = tk.Button(frame_keyboard, text=",", height=2, width=2, background="light blue",
                                 command=lambda: fk.print_value(",", text_field)).place(x=175, y=390)
         ButtonDot = tk.Button(frame_keyboard, text=".", height=2, width=2, background="light blue",
@@ -104,20 +104,3 @@ class Keyboard:
                               command=lambda: fk.print_value(1, text_field)).place(x=330, y=390)
         ButtonZero = tk.Button(frame_keyboard, text="0", height=2, width=2, background="light blue",
                                command=lambda: fk.print_value(0, text_field)).place(x=355, y=435)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
