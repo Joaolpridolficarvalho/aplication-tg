@@ -1,14 +1,14 @@
 import tkinter as tk
 
-import Functions_keyboard
+from Functions_keyboard import *
 
 
 # import Editor
 class Keyboard:
     def __init__(self, frame_keyboard, text_field):
         self.amount_of_words = 0
+        fk = Functions_keyboard(frame_keyboard)
 
-        fk = Functions_keyboard.Functions_keyboard(frame_keyboard)
 
         ButtonQ = tk.Button(frame_keyboard, text="q", height=2, width=2, background="light blue",
                             command=lambda: fk.control_button("q", text_field, 0, 300)).place(x=0, y=300)

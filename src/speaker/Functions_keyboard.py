@@ -1,6 +1,5 @@
 import tkinter as tk
 
-from Interface import Interface
 
 
 class Functions_keyboard:
@@ -13,7 +12,7 @@ class Functions_keyboard:
 
 
 
-    def print_value(self, value, ):
+    def print_value(self, value):
         value = str(value)
         Interface.text_field.insert(tk.END, value)
 
@@ -80,7 +79,7 @@ class Functions_keyboard:
             letterAO.destroy()
 
     def control_button(self, value, text_field, x, y):
-        self.print_value(value, text_field)
+       # self.print_value(value, text_field)
         try:
             self.hide_syllable_bar()
         finally:
