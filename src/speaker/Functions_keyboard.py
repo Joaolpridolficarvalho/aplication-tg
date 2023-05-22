@@ -1,20 +1,22 @@
 import tkinter as tk
-
+#import Textboxes as tb
 
 
 class Functions_keyboard:
     def __init__(self, root=None):
         super().__init__()
         self.root = root
+#        self.text_field = tb.Textboxes(self.root)
 
 
 
 
 
+    # def print_value(self, value):
+    #     value = str(value)
+    #     self.text_field.insert("end", value)
 
-    def print_value(self, value):
-        value = str(value)
-        Interface.text_field.insert(tk.END, value)
+
 
     def get_text(self, text_field):
         print(type(text_field))
@@ -34,7 +36,7 @@ class Functions_keyboard:
         text_field.delete("1.0", tk.END)
 
     def control_syllable_bar(self, syllable, text_field):
-        self.print_value(syllable, text_field)
+        self.print_value(syllable)
         self.hide_syllable_bar()
 
     def syllable_bar(self, x, y, text_field):
@@ -79,7 +81,7 @@ class Functions_keyboard:
             letterAO.destroy()
 
     def control_button(self, value, text_field, x, y):
-       # self.print_value(value, text_field)
+        #self.print_value(value)
         try:
             self.hide_syllable_bar()
         finally:
