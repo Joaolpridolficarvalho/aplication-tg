@@ -61,8 +61,9 @@ class Keyboard:
                             command=lambda: fk.control_button("l", 200, 345)).place(x=200, y=345)
         Buttonç = tk.Button(frame_keyboard, text="ç", height=2, width=2, background="light blue",
                             command=lambda: fk.control_button("ç", 225, 345)).place(x=225, y=345)
+        # testing
         ButtonEnter = tk.Button(frame_keyboard, text="Enter", height=2, width=10, background="light blue",
-                                command=lambda: fk.print_value("\n")).place(x=250, y=345)
+                                command=lambda: fk.print_conssole()).place(x=250, y=345)
         ButtonZ = tk.Button(frame_keyboard, text="z", height=2, width=2, background="light blue",
                             command=lambda: fk.control_button("z", 0, 390)).place(x=0, y=390)
         ButtonX = tk.Button(frame_keyboard, text="x", height=2, width=2, background="light blue",

@@ -34,7 +34,7 @@ class Interface:
                                                                                                                 y=8)
     pitch_choose = ttk.Scale(frame_favorite, from_=0, to=100, orient="horizontal").place(x=450, y=8)
     voice_choose.config(width=20, height=1, background="white")
-    menu_button = Button(frame_keyboard, text="☰", command=menu(root).open()).place(x=1000, y=8)
+    menu_button = Button(frame_keyboard, text="☰", command=menu(root).show_menu).place(x=960, y=8)
 
     root.mainloop()
 

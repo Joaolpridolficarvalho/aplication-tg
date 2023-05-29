@@ -200,3 +200,6 @@ class Functions_keyboard:
         tilde.destroy()
         crasis.destroy()
         trema.destroy()
+# testing
+    def print_conssole(self):
+        self.print_value(self.get_text())
