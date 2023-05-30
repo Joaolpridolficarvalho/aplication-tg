@@ -5,7 +5,7 @@ class Textboxes:
         super().__init__()
         self.root = root
         self.field = "text_field"
-
+    # TODO: let it responsive
     def text_field(self):
         text_field = Text(self.root, width=30, height=10, font=("Arial", 16), border=2)
         text_field.place(x=400, y=30)
