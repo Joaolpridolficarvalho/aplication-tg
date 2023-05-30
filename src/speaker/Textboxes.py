@@ -15,7 +15,7 @@ class Textboxes:
         pitch_value = Text(self.root, height=1, width=7, font=("Arial", 11)).place(x=600, y=8)
         return pitch_value
 
-    def alternate_text_field(self, field):
+
 
 
 # TODO: create method to alternate between fields

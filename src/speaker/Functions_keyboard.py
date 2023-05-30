@@ -10,6 +10,7 @@ class Functions_keyboard:
     def print_value(self, value):
         value = str(value)
         self.text_field.insert("end", value)
+        return
 
     def get_text(self):
         return tb.Textboxes(self.root).text_field().get("1.0", END)
