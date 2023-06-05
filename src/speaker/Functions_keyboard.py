@@ -6,11 +6,13 @@ class Functions_keyboard:
     def __init__(self, root=None):
         self.root = root
         self.text_field = tb.Textboxes(self.root).text_field()
-
+        self.uppercase = False
     def print_value(self, value):
         value = str(value)
+        if self.uppercase:
+            value = value.upper()
         self.text_field.insert("end", value)
-        return
+
 
     def get_text(self):
         return tb.Textboxes(self.root).text_field().get("1.0", END)
@@ -73,7 +75,7 @@ class Functions_keyboard:
         self.print_value(value)
         try:
             self.hide_syllable_bar()
-        finally:
+        except:
             if value == "q":
                 self.buttonQ(x, y)
             else:
@@ -204,3 +206,9 @@ class Functions_keyboard:
 # testing
     def print_conssole(self):
         self.print_value(self.get_text())
+
+    def set_uppercase(self):
+        if self.uppercase:
+            self.uppercase = False
+        else:
+            self.uppercase = True
