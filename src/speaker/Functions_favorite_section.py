@@ -16,6 +16,9 @@ class Functions_favorite_section:
         self.trash = r"D:\Documentos\estágio\Speaker\aplication-tg\Img\delete.png"
         self.pencil = r"D:\Documentos\estágio\Speaker\aplication-tg\Img\pencil.png"
 
+    def test(self):
+        print("teste")
+
     def add_favorite(self, ):
         text = self.fk.get_text()
         self.fm.edit_file(text, self.path)
