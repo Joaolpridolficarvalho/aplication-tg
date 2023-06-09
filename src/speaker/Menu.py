@@ -4,7 +4,7 @@ from tkinter import Button, Frame
 class Menu:
     def __init__(self, root, file_manager):
         self.root = root
-        self.file_manager = file_manager
+        self.file_manager = file_manager()
 
     def open_menu(self):
         self.show_menu()

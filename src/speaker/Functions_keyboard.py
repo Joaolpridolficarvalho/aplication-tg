@@ -15,7 +15,7 @@ class Functions_keyboard:
 
 
     def get_text(self):
-        return tb.Textboxes(self.root).text_field().get("1.0", END)
+        return self.text_field.get("1.0", END)
     def backspace(self):
         self.text_field.delete("end-2c")
 

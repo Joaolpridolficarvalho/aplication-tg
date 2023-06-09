@@ -1,10 +1,8 @@
 from tkinter import Canvas, StringVar, ttk, Label
 from Functions_favorite_section import Functions_favorite_section as ffs
 
-
 class Canvas_elements:
     def __init__(self, root=None):
-        super().__init__()
         self.root = root
         style_font = "Arial"
         font_size = 11
@@ -16,8 +14,8 @@ class Canvas_elements:
         text_favorite = toolbar.create_text(325, 15, text="Favoritar", fill="white", font=[style_font, font_size],
                                             tags="text_favorite")
         toolbar.tag_bind("button_favorite", '<Button-1>',
-                         lambda event: ffs(self.root, r"D:\Documentos\text.txt").add_favorite)
-        toolbar.tag_bind("text_favorite", '<Button-1>', lambda event: ffs(self.root, r"D:\Documentos\text.txt").add_favorite)
+                         lambda event: ffs(self.root, r"D:\Documentos\text.txt").add_favorite())
+        toolbar.tag_bind("text_favorite", '<Button-1>', lambda event: ffs(self.root, r"D:\Documentos\text.txt").add_favorite())
         voices = ["test", "test2", "test3", "test4", "test5", "test6", "test7", "test8", "test9"]
         voice = StringVar()
 

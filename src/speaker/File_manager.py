@@ -47,7 +47,7 @@ class File_manager:
 
 if __name__ == '__main__':
     file_manager = File_manager()
-    file_manager.edit_file("Olá, tudo bem?", "arquivo.txt")
+    file_manager.edit_file("Olá, tudo bem?", "./arquivo.txt")
 
     file_manager.delete_sentence("?", "arquivo.txt")
     content = file_manager.read_file("arquivo.txt")
