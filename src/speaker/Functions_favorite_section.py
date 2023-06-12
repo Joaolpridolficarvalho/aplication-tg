@@ -1,5 +1,5 @@
 import File_manager as fm
-import Functions_keyboard as fk
+import Textboxes as tb
 import tkinter as tk
 import Images as img
 
@@ -10,7 +10,7 @@ class Functions_favorite_section:
         self.path = path
         self.img = img.Images()
         self.fm = fm.File_manager()
-        self.fk = fk.Functions_keyboard()
+        self.tb = tb.Textboxes()
         self.favorite = []
         self. button_trash = []
         self.trash = r"D:\Documentos\estágio\Speaker\aplication-tg\Img\delete.png"
@@ -19,7 +19,7 @@ class Functions_favorite_section:
 
     def add_favorite(self ):
 
-        text = self.fk.get_text()
+        text = self.tb.get_text()
         print(text)
         self.fm.edit_file(text, self.path)
         #self.show_favorite()

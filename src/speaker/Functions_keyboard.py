@@ -13,9 +13,9 @@ class Functions_keyboard:
             value = value.upper()
         self.text_field.insert("end", value)
 
+    def get_position_cursor(self):
 
-    def get_text(self):
-        return self.text_field.get("1.0", END)
+
     def backspace(self):
         self.text_field.delete("end-2c")
 
