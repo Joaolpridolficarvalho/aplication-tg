@@ -1,11 +1,11 @@
 import File_manager as fm
-import Functions_keyboard as fk
+
 import tkinter as tk
 import Images as img
 
 
 class Functions_favorite_section:
-    def __init__(self, frame_favorite, path):
+    def __init__(self, path=None, frame_favorite=None, fk=None ):
         self.frame_favorite = frame_favorite
         self.path = path
         self.img = img.Images()
@@ -19,7 +19,7 @@ class Functions_favorite_section:
 
     def add_favorite(self ):
 
-        text = self.fk.get_text()
+        text = .get_text()
         print(text)
         self.fm.edit_file(text, self.path)
         #self.show_favorite()

@@ -3,26 +3,31 @@ from tkinter import Frame, Button, END, Text
 
 
 class Functions_keyboard:
-    def __init__(self, root=None):
+    def __init__(self, root=None, text_field=None):
         self.root = root
         self.uppercase = False
         self.text_field = Text(self.root, width=30, height=10, font=("Arial", 16), border=2)
         self.text_field.place(x=400, y=30)
 
     def print_value(self, value):
-        value = str(value)
-        if self.uppercase:
-            value = value.upper()
-        self.text_field.insert("end", value)
 
+        #self.text_field.get(1.0, END)
+        #self.text_field.delete(1.0, END)
+       # print(pharse)
+        #self.text_field.insert((str(pharse) + str(value)))
+
+        # value = str(value)
+        # if self.uppercase:
+        #     value = value.upper()
+        self.text_field.insert("end", value)
+        pharse = self.get_text()
 
 
 
     def get_text(self):
-        value = self.text_field.get(1.0, END)
-        print(value)
-        print("ok")
-        return value
+        setence = self.text_field.get(1.0, END)
+        print(setence)
+        return setence
     def backspace(self):
         self.text_field.delete("end-2c")
 
