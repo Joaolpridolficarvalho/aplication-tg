@@ -1,21 +1,28 @@
-from tkinter import Frame, Button, END
-import Textboxes as tb
+from tkinter import Frame, Button, END, Text
+
 
 
 class Functions_keyboard:
     def __init__(self, root=None):
         self.root = root
-        self.text_field = tb.Textboxes(self.root).text_field()
         self.uppercase = False
+        self.text_field = Text(self.root, width=30, height=10, font=("Arial", 16), border=2)
+        self.text_field.place(x=400, y=30)
+
     def print_value(self, value):
         value = str(value)
         if self.uppercase:
             value = value.upper()
         self.text_field.insert("end", value)
 
-    def get_position_cursor(self):
 
 
+
+    def get_text(self):
+        value = self.text_field.get(1.0, END)
+        print(value)
+        print("ok")
+        return value
     def backspace(self):
         self.text_field.delete("end-2c")
 
@@ -24,7 +31,7 @@ class Functions_keyboard:
         text_field.icursor(position_cursor + new_position_cursor)
 
     def clear_text(self, text_field):
-        self.text_field.delete("1.0", END)
+        self.text_field().delete("1.0", END)
 
     def control_syllable_bar(self, syllable):
         self.print_value(syllable)

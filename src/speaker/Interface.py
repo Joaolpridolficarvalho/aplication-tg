@@ -20,9 +20,14 @@ class Interface:
     keyboard = kb(frame_keyboard)
     tb(root)
     ce(root)
-
     menu_button = Button(frame_keyboard, text="☰", command=menu(root, File_manager).show_menu).place(x=960, y=8)
+    voices = ["test", "test2", "test3", "test4", "test5", "test6", "test7", "test8", "test9"]
+    voice = StringVar()
 
+    voice_choose = ttk.Combobox(root, textvariable=voice, values=voices)
+    voice_choose.place(x=700, y=8)
+    voice_choose.set("Selecione uma voz")
+    voice_choose.config(width=20, height=1, background="white", foreground="black")
     root.mainloop()
 
 
@@ -31,9 +36,7 @@ class Interface:
         voice = self.voice.get()
         return voice
 
-    def get_pitch(self):
-        pitch = self.pitch_choose.get()
-        return pitch
+
 
 if __name__ == '__main__':
     Interface()
