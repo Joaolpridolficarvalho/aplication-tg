@@ -2,10 +2,12 @@ from tkinter import filedialog
 from Functions_keyboard import Functions_keyboard as fk
 
 class File_manager:
-    def __init__(self):
+    def __init__(self, text_field=None):
+        self.text_field = text_field
         self.words = 0
 
     def edit_file(self, text, file_name, mode='w'):
+        print(text)
         with open(file_name, mode) as f:
             text = str(text)
             f.write(text)
@@ -35,13 +37,13 @@ class File_manager:
                                               filetypes=[("Arquivos de texto", "*.txt")])
         if filename:
             content = self.read_file(filename)
-            fk().control_button(content, 0, 0)
+            fk().print_value(content, self.text_field)
 
     def save_file(self):
         filename = filedialog.asksaveasfilename(initialdir="/", defaultextension=".txt",
                                                 title="Salvar", filetypes=[("Arquivos de texto", "*.txt")])
         if filename:
-            content = fk().get_text()
+            content = fk().get_text(self.text_field)
             self.edit_file(content, filename)
 
 

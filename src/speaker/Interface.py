@@ -3,7 +3,6 @@ from Menu import Menu as menu
 from Keyboard import Keyboard as kb
 from Textboxes import Textboxes as tb
 from File_manager import File_manager
-from Functions_favorite_section import Functions_favorite_section as ffs
 from Canvas_elements import Canvas_elements as ce
 class Interface:
     root = Tk()
@@ -17,10 +16,10 @@ class Interface:
     buttonSpeake = Button(root, text="Speak", height=20, width=10).place(x=780, y=30)
     frame_favorite = Frame(root, width=300, height=300, background="white", border=2).place(x=0, y=30)
     frame_keyboard = Frame(root, width=1024, height=600, background="#07C7F2").place(x=0, y=300)
-    keyboard = kb(frame_keyboard)
-    tb(root)
-    ce(root)
-    menu_button = Button(frame_keyboard, text="☰", command=menu(root, File_manager).show_menu).place(x=960, y=8)
+
+    keyboard = kb(frame_keyboard,tb(root).text_field(), frame_favorite)
+
+    #menu_button = Button(frame_keyboard, text="☰", command=menu(root, File_manager, tb().text_field()).show_menu).place(x=960, y=8)
     voices = ["test", "test2", "test3", "test4", "test5", "test6", "test7", "test8", "test9"]
     voice = StringVar()
 

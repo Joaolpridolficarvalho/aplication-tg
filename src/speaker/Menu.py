@@ -2,9 +2,11 @@ from tkinter import Button, Frame
 
 
 class Menu:
-    def __init__(self, root, file_manager):
+    def __init__(self, root, file_manager, text_field):
         self.root = root
-        self.file_manager = file_manager()
+        self.text_field = text_field
+        self.file_manager = file_manager(self.text_field)
+
 
     def open_menu(self):
         self.show_menu()
