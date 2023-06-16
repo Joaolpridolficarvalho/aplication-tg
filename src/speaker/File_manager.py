@@ -17,9 +17,14 @@ class File_manager:
             content = f.read()
             return content
 
+    def replace_sentence(self, old_sentence, new_sentence, file_name):
+        content = self.read_file(file_name)
+        new_sentence = str(new_sentence)
+        content = content.replace(old_sentence, new_sentence)
+        self.edit_file(content, file_name)
     def get_sentence(self, file_name):
         content = self.read_file(file_name)
-        sentence = content.split()
+        sentence = content.split(self.delimiter)
         return sentence
 
     def search_sentence(self, sentence, file_name):
@@ -30,7 +35,7 @@ class File_manager:
     def delete_sentence(self, sentence, file_name):
         content = self.read_file(file_name)
         text = content.replace(sentence, "")
-        self.edit_file(text, file_name, 'w')
+        self.edit_file(text, file_name)
 
     def select_file(self):
         filename = filedialog.askopenfilename(initialdir="/", title="Abrir",

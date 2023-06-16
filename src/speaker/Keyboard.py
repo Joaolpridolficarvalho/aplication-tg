@@ -5,11 +5,11 @@ from Canvas_elements import Canvas_elements as ce
 
 # import Editor
 class Keyboard:
-    def __init__(self, frame_keyboard, text_field, frame_canvas):
+    def __init__(self, frame_keyboard, text_field):
         self.amount_of_words = 0
         fk = Functions_keyboard(frame_keyboard)
         text_field = text_field
-        ce(frame_canvas, text_field)
+
         ButtonQ = tk.Button(frame_keyboard, text="q", height=2, width=2, background="light blue",
                             command=lambda: fk.control_button("q", 400, 300, text_field)).place(x=400, y=300)
         ButtonW = tk.Button(frame_keyboard, text="w", height=2, width=2, background="light blue",
