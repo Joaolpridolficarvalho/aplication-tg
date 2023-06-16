@@ -7,20 +7,13 @@ class Functions_keyboard:
         self.uppercase = False
 
     def print_value(self, value, text_field):
-
-        # self.text_field.get(1.0, END)
-        # self.text_field.delete(1.0, END)
-        # print(pharse)
-        # self.text_field.insert((str(pharse) + str(value)))
-
-        # value = str(value)
-        # if self.uppercase:
-        #     value = value.upper()
+        value = str(value)
+        if self.uppercase:
+            value = value.upper()
         text_field.insert("end", value)
 
     def get_text(self, text_field):
         setence = text_field.get("1.0", END)
-
         return setence
 
     def backspace(self, text_field):
@@ -31,7 +24,7 @@ class Functions_keyboard:
         text_field.icursor(position_cursor + new_position_cursor)
 
     def clear_text(self, text_field):
-        self.text_field().delete("1.0", END)
+        text_field.delete("1.0", END)
 
     def control_syllable_bar(self, syllable, text_field):
         self.print_value(syllable, text_field)
@@ -50,17 +43,17 @@ class Functions_keyboard:
                          command=lambda: self.control_syllable_bar("e", text_field)).grid(row=0, column=1)
         global letterI
         letterI = Button(bar, text="i", height=1, width=1, background="light blue",
-                         command=lambda: self.control_syllable_bar("i")).grid(row=0, column=2)
+                         command=lambda: self.control_syllable_bar("i", text_field)).grid(row=0, column=2)
         global letterO
         letterO = Button(bar, text="o", height=1, width=1, background="light blue",
-                         command=lambda: self.control_syllable_bar("o")).grid(row=0, column=3)
+                         command=lambda: self.control_syllable_bar("o", text_field)).grid(row=0, column=3)
         global letterU
         letterU = Button(bar, text="u", height=1, width=1, background="light blue",
-                         command=lambda: self.control_syllable_bar("u")).grid(row=0, column=4)
+                         command=lambda: self.control_syllable_bar("u", text_field)).grid(row=0, column=4)
 
         global letterAO
         letterAO = Button(bar, text="ão", height=1, width=1, background="light blue",
-                          command=lambda: self.control_syllable_bar("ão")).grid(row=0, column=5)
+                          command=lambda: self.control_syllable_bar("ão", text_field)).grid(row=0, column=5)
 
     def hide_syllable_bar(self):
         bar.destroy()
@@ -84,34 +77,34 @@ class Functions_keyboard:
             self.hide_syllable_bar()
         except:
             if value == "q":
-                self.buttonQ(x, y)
+                self.buttonQ(x, y, text_field)
             else:
-                self.syllable_bar(x, y)
+                self.syllable_bar(x, y, text_field)
 
-    def buttonQ(self, x, y, ):
+    def buttonQ(self, x, y, text_field):
 
         global bar
         bar = Frame(self.root, width=70, height=20, background="red")
         bar.place(x=x - 5, y=y - 5)
         global letterUA
         letterUA = Button(bar, text="ua", height=1, width=1, background="light blue",
-                          command=lambda: self.control_syllable_bar("ua")).grid(row=0, column=0)
+                          command=lambda: self.control_syllable_bar("ua", text_field)).grid(row=0, column=0)
         global letterUE
         letterUE = Button(bar, text="ue", height=1, width=1, background="light blue",
-                          command=lambda: self.control_syllable_bar("ue")).grid(row=0, column=1)
+                          command=lambda: self.control_syllable_bar("ue", text_field)).grid(row=0, column=1)
         global letterUI
         letterUI = Button(bar, text="ui", height=1, width=1, background="light blue",
-                          command=lambda: self.control_syllable_bar("ui")).grid(row=0, column=2)
+                          command=lambda: self.control_syllable_bar("ui", text_field)).grid(row=0, column=2)
         global letterUO
         letterUO = Button(bar, text="uo", height=1, width=1, background="light blue",
-                          command=lambda: self.control_syllable_bar("uo")).grid(row=0, column=3)
+                          command=lambda: self.control_syllable_bar("uo", text_field)).grid(row=0, column=3)
         global letterU
         letterU = Button(bar, text="uu", height=1, width=1, background="light blue",
-                         command=lambda: self.control_syllable_bar("u")).grid(row=0, column=4)
+                         command=lambda: self.control_syllable_bar("u", text_field)).grid(row=0, column=4)
 
         global letterUAO
         letterUAO = Button(bar, text="uão", height=1, width=1, background="light blue",
-                           command=lambda: self.control_syllable_bar("uão")).grid(row=0, column=5)
+                           command=lambda: self.control_syllable_bar("uão", text_field)).grid(row=0, column=5)
 
     def accents_bar(self, x, y, letter, text_field):
         global bar

@@ -17,17 +17,18 @@ class Functions_favorite_section:
         self.button_trash = []
         self.trash = r"D:\Documentos\estágio\Speaker\aplication-tg\Img\delete.png"
         self.pencil = r"D:\Documentos\estágio\Speaker\aplication-tg\Img\pencil.png"
-
+      #  self.show_favorite()
+        self.delimiter = ">/"
+    #ok
     def add_favorite(self):
 
         text = self.fk.get_text(self.text_field)
-        print(text)
         self.fm.edit_file(text, self.path)
-        # self.show_favorite()
+        self.show_favorite()
 
     def delete_favorite(self):
-        text = self.fk.get_text()
-        self.fm.delete_sentence(text)
+        text = self.fk.get_text(self.text_field)
+        self.fm.delete_sentence(text+"\n", self.path)
         self.show_favorite()
 
     def show_favorite(self):

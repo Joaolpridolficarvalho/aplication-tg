@@ -4,10 +4,10 @@ from Functions_keyboard import Functions_keyboard as fk
 class File_manager:
     def __init__(self, text_field=None):
         self.text_field = text_field
-        self.words = 0
+        self.delimiter = ">/"
 
     def edit_file(self, text, file_name, mode='w'):
-        print(text)
+
         with open(file_name, mode) as f:
             text = str(text)
             f.write(text)

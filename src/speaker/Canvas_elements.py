@@ -5,6 +5,7 @@ class Canvas_elements:
     def __init__(self, root=None, text_field=None):
         self.root = root
         self.text_field = text_field
+        self.path = r"D:\Documentos\favorite.txt"
         style_font = "Arial"
         font_size = 11
         toolbar = Canvas(root, width=1024, height=30, background="black", border=2)
@@ -15,8 +16,8 @@ class Canvas_elements:
         text_favorite = toolbar.create_text(325, 15, text="Favoritar", fill="white", font=[style_font, font_size],
                                             tags="text_favorite")
         toolbar.tag_bind("button_favorite", '<Button-1>',
-                         lambda event: ffs(r"D:\Documentos\text.txt", self.root, self.text_field).add_favorite())
-        toolbar.tag_bind("text_favorite", '<Button-1>', lambda event: ffs(r"D:\Documentos\text.txt",self.root, text_field).add_favorite())
+                         lambda event: ffs(self.path, self.root, self.text_field).add_favorite())
+        toolbar.tag_bind("text_favorite", '<Button-1>', lambda event: ffs(self.path,self.root, text_field).add_favorite())
 
         pitch = Label(self.root, text="Tom", font=[style_font, font_size], background="black",
                       foreground="white").place(x=400, y=8)
