@@ -25,7 +25,7 @@ class Functions_favorite_section:
     #ok
     def add_favorite(self):
 
-        text = self.fk.get_text(self.text_field)
+        text = self.fk.get_text()
         self.fm.edit_file(text+self.delimiter, self.path, 'a')
         try:
             self.hide_favorite()
@@ -35,8 +35,8 @@ class Functions_favorite_section:
             self.show_pencil()
 
     def edit_favorite(self,  old_text):
-        self.fk.print_value(old_text, self.text_field)
-        new_text = self.fk.get_text(self.text_field)
+        self.fk.print_value(old_text)
+        new_text = self.fk.get_text()
         self.fm.replace_sentence(old_text, new_text, self.path)
         self.show_favorite()
 

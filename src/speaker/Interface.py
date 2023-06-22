@@ -15,7 +15,7 @@ class Interface:
     frame_favorite = Frame(root, width=300, height=300, background="yellow", border=2).place(x=0, y=30)
     frame_keyboard = Frame(root, width=1024, height=600, background="#07C7F2").place(x=0, y=300)
 
-    ic(root,frame_favorite,)
+    ic(root,frame_favorite, frame_keyboard, tb(root).text_field())
     voices = ["test", "test2", "test3", "test4", "test5", "test6", "test7", "test8", "test9"]
     voice = StringVar()
 
