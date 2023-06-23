@@ -2,17 +2,16 @@ import File_manager as fm
 
 import tkinter as tk
 import Images as img
-import Functions_keyboard as fk
+
 
 
 class Functions_favorite_section:
-    def __init__(self, path, frame_favorite, text_field):
-        self.text_field = text_field
+    def __init__(self, path, frame_favorite, fk):
         self.frame_favorite = frame_favorite
         self.path = path
         self.img = img.Images()
-        self.fm = fm.File_manager(self.text_field)
-        self.fk = fk.Functions_keyboard()
+        self.fk = fk
+        self.fm = fm.File_manager(self.fk)
         self.favorite = []
         self.button_trash = []
         self.button_pencil = []
@@ -25,7 +24,7 @@ class Functions_favorite_section:
     #ok
     def add_favorite(self):
 
-        text = self.fk.get_text(self.text_field)
+        text = self.fk.get_text()
         self.fm.edit_file(text+self.delimiter, self.path, 'a')
         try:
             self.hide_favorite()
@@ -34,9 +33,9 @@ class Functions_favorite_section:
             self.show_trash()
             self.show_pencil()
 
-    def edit_favorite(self,  old_text):
-        self.fk.print_value(old_text, self.text_field)
-        new_text = self.fk.get_text(self.text_field)
+    def edit_favorite(self, old_text):
+        self.fk.print_value(old_text)
+        new_text = self.fk.get_text()
         self.fm.replace_sentence(old_text, new_text, self.path)
         self.show_favorite()
 

@@ -1,13 +1,13 @@
-from tkinter import Canvas, StringVar, ttk, Label
+from tkinter import Canvas, ttk, Label
 from Functions_favorite_section import Functions_favorite_section as ffs
 
 
 class Canvas_elements:
-    def __init__(self, root=None, text_field=None):
+    def __init__(self, root=None, fk=None):
         self.root = root
-        self.text_field = text_field
+        self.fk = fk
         self.path = r"D:\Documentos\favorite.txt"
-        self.ffs = ffs(self.path, self.root, self.text_field)
+        self.ffs = ffs(self.path, self.root, self.fk)
         style_font = "Arial"
         font_size = 11
         toolbar = Canvas(root, width=1024, height=30, background="black", border=2)
