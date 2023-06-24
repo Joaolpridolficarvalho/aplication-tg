@@ -54,7 +54,7 @@ class Word_predictor:
         try:
             self.clear_predictions()
         # except ConnectionError:
-        #     pass
+        #     passy
         except:
             self.set_text(text)
             text = self.get_text()
