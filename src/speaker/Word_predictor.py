@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import os
 from tkinter import Label
 
+
 class Word_predictor:
     def __init__(self, fk=None, root=None):
         load_dotenv()
@@ -32,8 +33,9 @@ class Word_predictor:
 
 
     def get_prediction(self, prediction):
-        print(prediction)
         return prediction.split("\n")
+
+
 
     def show_prediction(self, prediction):
         for i in range(len(prediction)):
@@ -54,13 +56,16 @@ class Word_predictor:
         try:
             self.clear_predictions()
         # except ConnectionError:
-        #     passy
+        #     pass
         except:
             self.set_text(text)
             text = self.get_text()
             prediction = self.request(text)
             prediction = self.get_prediction(prediction)
             self.show_prediction(prediction)
+
+
+
 if __name__ == "__main__":
     wp = Word_predictor()
     sentence = input()

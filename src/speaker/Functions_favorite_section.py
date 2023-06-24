@@ -33,7 +33,8 @@ class Functions_favorite_section:
             self.show_trash()
             self.show_pencil()
 
-    def edit_favorite(self, old_text):
+
+    def edit_favorite(self,  old_text):
         self.fk.print_value(old_text)
         new_text = self.fk.get_text()
         self.fm.replace_sentence(old_text, new_text, self.path)
