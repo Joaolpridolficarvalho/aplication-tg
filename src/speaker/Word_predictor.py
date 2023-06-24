@@ -53,7 +53,9 @@ class Word_predictor:
     def control_prediction(self, text):
         try:
             self.clear_predictions()
-        finally:
+        # except ConnectionError:
+        #     pass
+        except:
             self.set_text(text)
             text = self.get_text()
             prediction = self.request(text)
