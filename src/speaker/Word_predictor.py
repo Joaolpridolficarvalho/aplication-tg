@@ -7,7 +7,7 @@ from tkinter import Label
 class Word_predictor:
     def __init__(self, fk=None, root=None):
         load_dotenv()
-        self.prompt = "What are the next words?\n\nInput: "
+        self.prompt = "give me the most probability words in Portuguese based on prompt:  "
         self.root = root
         self.text = ""
         self. predictions = []
@@ -22,6 +22,7 @@ class Word_predictor:
             max_tokens=100,
             temperature=0
         )
+        print(self.prompt + text)
         print(response)
         return response.choices[0].text
 
@@ -57,13 +58,12 @@ class Word_predictor:
             self.clear_predictions()
         # except ConnectionError:
         #     pass
-        except:
+        finally:
             self.set_text(text)
             text = self.get_text()
             prediction = self.request(text)
             prediction = self.get_prediction(prediction)
             self.show_prediction(prediction)
-
 
 
 if __name__ == "__main__":
