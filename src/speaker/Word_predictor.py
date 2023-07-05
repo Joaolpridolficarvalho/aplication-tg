@@ -11,7 +11,7 @@ class Word_predictor:
         self.root = root
         self.text = ""
         self. predictions = []
-        self.x = 400
+        self.x = 340
         self.fk = fk
 
     def request(self, text):
@@ -22,8 +22,8 @@ class Word_predictor:
             max_tokens=100,
             temperature=0
         )
-        print(self.prompt + text)
-        print(response)
+       # print(self.prompt + text)
+       # print(response)
         return response.choices[0].text
 
     def get_text(self):
@@ -34,6 +34,7 @@ class Word_predictor:
 
 
     def get_prediction(self, prediction):
+        #print("see"+prediction)
         return prediction.split("\n")
 
 
@@ -43,8 +44,10 @@ class Word_predictor:
             self.predictions.append(Label(self.root, text=prediction[i], height=2, width=len(prediction[i]), background="white"))
             self.predictions[i].place(x=self.x, y=300)
             self.predictions[i].bind("<Button-1>", lambda event, text=prediction[i]: self.select_prediction(text))
+          #  print(prediction[i])
             self.x += 90
         self.x = 400
+        print("test")
     def select_prediction(self, text):
         self.fk.print_value(text)
 
@@ -55,9 +58,7 @@ class Word_predictor:
         self.x = 400
     def control_prediction(self, text):
         try:
-            self.clear_predictions()
-        # except ConnectionError:
-        #     pass
+            self.predictions.clear()
         finally:
             self.set_text(text)
             text = self.get_text()

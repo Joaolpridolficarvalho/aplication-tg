@@ -9,6 +9,7 @@ class File_manager:
 
         with open(file_name, mode) as f:
             text = str(text)
+            print(text)
             f.write(text)
 
     def read_file(self, file_name):
@@ -24,6 +25,7 @@ class File_manager:
     def get_sentence(self, file_name):
         content = self.read_file(file_name)
         sentence = content.split(self.delimiter)
+        print(sentence)
         return sentence
 
     def search_sentence(self, sentence, file_name):
@@ -32,10 +34,24 @@ class File_manager:
         return result
 
     def delete_sentence(self, sentence, file_name):
+        sentence = str(sentence+ '\n>/')
         content = self.read_file(file_name)
-        text = content.replace(sentence, "")
+        text = content.replace(sentence, "") 
         self.edit_file(text, file_name)
-
+        
+    def proccess_sentence(self, file_name):
+        sentences = self.get_sentence(file_name)
+        sentences = ''.join(sentences)
+        sentences = sentences.strip()
+        sentences = self.strtolist(sentences)
+        print (sentences)
+        return sentences
+        
+    def strtolist(self, sentence):
+        li = list(sentence.split("\n")) 
+       
+        return li 
+     
     def select_file(self):
         filename = filedialog.askopenfilename(initialdir="/", title="Abrir",
                                               filetypes=[("Arquivos de texto", "*.txt")])
