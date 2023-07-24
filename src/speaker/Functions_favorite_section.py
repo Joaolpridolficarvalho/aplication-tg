@@ -11,7 +11,7 @@ class Functions_favorite_section:
         self.path = path
         self.img = img.Images()
         self.fk = fk
-        self.fm = fm.File_manager(self.fk)
+        self.fm = fm.File_manager()
         self.favorite = []
         self.button_trash = []
         self.button_pencil = []
@@ -40,7 +40,7 @@ class Functions_favorite_section:
         self.control_favorite()
 
     def show_favorite(self):
-        for index, favorite in enumerate(self.fm.proccess_sentence(self.path)):
+        for index, favorite in enumerate(self.fm.get_sentence(self.path)):
             if favorite !='':
                 label = tk.Label(self.frame_favorite, text=favorite, font=("Arial", 18), highlightbackground="yellow", background="yellow")
                 label.place(x=self.x, y=self.y + 5)

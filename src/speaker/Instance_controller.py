@@ -9,6 +9,6 @@ class Instance_controller:
         self.fk = fk(frame_keyboard, text_field)
         self.text_field = text_field
         kb(frame_keyboard, self.fk)
-        menu(frame_favorite, self.fk)
+        menu(frame_favorite, text_field)
         ce(root,  self.fk)
-        menu_button = Button(frame_keyboard, text="☰", command=menu(root, File_manager).show_menu).place(x=960, y=8)
+        menu_button = Button(frame_keyboard, text="☰", background="black", foreground="white", command=menu(root, File_manager).show_menu).place(x=960, y=5)

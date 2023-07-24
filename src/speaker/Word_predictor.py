@@ -15,6 +15,7 @@ class Word_predictor:
         self.fk = fk
 
     def request(self, text):
+    	
         openai.api_key = os.getenv("API_KEY")
         response = openai.Completion.create(
             model="text-davinci-003",

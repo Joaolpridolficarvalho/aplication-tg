@@ -1,11 +1,10 @@
 from tkinter import Button, Frame
-from File_manager import File_manager
+from File_manager import File_manager as fm
 
 class Menu:
-    def __init__(self, root, fk):
+    def __init__(self, root, text_field):
         self.root = root
-        self.fk = fk
-        self.file_manager = File_manager(self.fk)
+        self.text_field = text_field
 
 
     def open_menu(self):
@@ -19,7 +18,7 @@ class Menu:
         global open_file
         open_file = Button(self.root, text="Abrir", width=5, height=1, font=("Arial", 12),
                            border=0, background="#07C7F2", foreground="white",
-                           command=self.file_manager.select_file)
+                           command=self.open_file())
         open_file.place(x=950, y=30)
         open_file.bind("<Enter>", func=lambda e: open_file.config(background="gray"))
         open_file.bind("<Leave>", func=lambda e: open_file.config(background="#07C7F2"))
@@ -27,7 +26,7 @@ class Menu:
         global save_file
         save_file = Button(self.root, text="Salvar", width=5, height=1, font=("Arial", 12),
                            border=0, background="#07C7F2", foreground="white",
-                           command=self.file_manager.save_file)
+                           command=self.save_file())
         save_file.place(x=950, y=54)
         save_file.bind("<Enter>", func=lambda e: save_file.config(background="gray"))
         save_file.bind("<Leave>", func=lambda e: save_file.config(background="#07C7F2"))
@@ -36,3 +35,9 @@ class Menu:
         frame_menu.destroy()
         open_file.destroy()
         save_file.destroy()
+	
+    def open_file(self):
+    	fm().select_file(self.text_field)
+    	
+    def save_file(self):
+    	fm().save_file(self.text_field)

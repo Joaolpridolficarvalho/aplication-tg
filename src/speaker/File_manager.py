@@ -1,8 +1,8 @@
 from tkinter import filedialog
+from Functions_keyboard import Functions_keyboard as fk
 
 class File_manager:
-    def __init__(self, fk):
-        self.fk = fk
+    def __init__(self):
         self.delimiter = ">/"
 
     def edit_file(self, text, file_name, mode='w'):
@@ -34,36 +34,25 @@ class File_manager:
         return result
 
     def delete_sentence(self, sentence, file_name):
-        sentence = str(sentence+ '\n>/')
+        sentence = str(sentence + self.delimiter)
         content = self.read_file(file_name)
         text = content.replace(sentence, "") 
         self.edit_file(text, file_name)
         
-    def proccess_sentence(self, file_name):
-        sentences = self.get_sentence(file_name)
-        sentences = ''.join(sentences)
-        sentences = sentences.strip()
-        sentences = self.strtolist(sentences)
-        print (sentences)
-        return sentences
-        
-    def strtolist(self, sentence):
-        li = list(sentence.split("\n")) 
-       
-        return li 
+   
      
-    def select_file(self):
+    def select_file(self, text_field):
         filename = filedialog.askopenfilename(initialdir="/", title="Abrir",
                                               filetypes=[("Arquivos de texto", "*.txt")])
         if filename:
             content = self.read_file(filename)
-            self.fk.print_value(content)
+            fk(text_field=text_field).print_value(content)
 
-    def save_file(self):
+    def save_file(self, text_field):
         filename = filedialog.asksaveasfilename(initialdir="/", defaultextension=".txt",
                                                 title="Salvar", filetypes=[("Arquivos de texto", "*.txt")])
         if filename:
-            content = self.fk.get_text()
+            content =  fk(text_field=text_field).get_text()
             self.edit_file(content, filename)
 
 

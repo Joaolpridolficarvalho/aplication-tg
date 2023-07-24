@@ -1,4 +1,4 @@
-
+from  Instance_controller import Instance_controller
 from tkinter import Text, Menu
 class Textboxes:
     def __init__(self, root=None):
@@ -14,7 +14,7 @@ class Textboxes:
 
     def text_field(self):
         text_field = Text(self.root, width=30, height=10, font=("Arial", 16), border=2)
-        text_field.place(x=400, y=30)
+        text_field.place(x=400, y=35)
         text_field.bind("<Button-3>", self.display_popup)
         return text_field
 
@@ -31,8 +31,7 @@ class Textboxes:
         try:
             self.menu.post(event.x_root, event.y_root)
         finally:
-             self.menu.grab_release() 
-            # self.show_menu()
+        	pass
 
     def popup_copy(self):
         self.event_generate("<<Copy>>")
