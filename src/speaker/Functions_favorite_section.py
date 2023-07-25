@@ -42,11 +42,11 @@ class Functions_favorite_section:
     def show_favorite(self):
         for index, favorite in enumerate(self.fm.get_sentence(self.path)):
             if favorite !='':
-                label = tk.Label(self.frame_favorite, text=favorite, font=("Arial", 18), highlightbackground="yellow", background="yellow")
+                label = tk.Label(self.frame_favorite, text=favorite, font=("Arial", 18), highlightbackground="yellow", background="yellow", width=15, anchor="w")
                 label.place(x=self.x, y=self.y + 5)
                 label.bind("label", '<Button-1>', lambda event: self.fk.print_value(label))
                 self.favorite.append(label)
-                self.y += 30
+                self.y += 80
                 print(index)
         self.y = 30
         print(len(self.favorite))
@@ -55,18 +55,18 @@ class Functions_favorite_section:
             if favorite !='': 
                self.button_trash.append(tk.Button(self.frame_favorite, text="exclui",
                                                command=lambda: self.delete_favorite(self.favorite[index].cget("text")), background="red",                                border=2,
-                                               height=5, width=5)) 
-               self.button_trash[index].place(x=self.x+200, y=self.y)
-               self.y += 30
+                                               height=3, width=3))
+               self.button_trash[index].place(x=self.x+200, y=self.y + 10)
+               self.y += 80
         self.y = 30
 
     def show_pencil(self):
         for index, favorite in enumerate(self.favorite):
             if favorite !='':
                self.button_pencil.append(tk.Button(self.frame_favorite, text="edita",
-                                               command=lambda: self.edit_favorite(self.favorite[index].cget("text")), background="#07C7F2", border=2, height=5, width=5))
-               self.button_pencil[index].place(x=self.x + 230, y=self.y)
-               self.y += 30
+                                               command=lambda: self.edit_favorite(self.favorite[index].cget("text")), background="#07C7F2", border=2, height=3, width=3))
+               self.button_pencil[index].place(x=self.x + 250, y=self.y + 10)
+               self.y += 80
         self.y = 30
 
 #image=self.img.load_image(self.pencil)
