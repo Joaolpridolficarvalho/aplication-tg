@@ -1,2 +1,2 @@
 # aplication tg
- Complete before
+ Complete after
