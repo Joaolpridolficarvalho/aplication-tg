@@ -6,7 +6,7 @@ class Canvas_elements:
     def __init__(self, root=None, fk=None):
         self.root = root
         self.fk = fk
-        self.path = r"D:\Documentos\favorite.txt"
+        self.path = r"/.favorite.txt"
         self.ffs = ffs(self.path, self.root, self.fk)
         style_font = "Arial"
         font_size = 11
