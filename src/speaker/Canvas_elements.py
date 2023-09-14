@@ -3,11 +3,12 @@ from Functions_favorite_section import Functions_favorite_section as ffs
 
 
 class Canvas_elements:
-    def __init__(self, root=None, fk=None):
+    def __init__(self, root, fk, frame_favorite):
         self.root = root
         self.fk = fk
-        self.path = r"/.favorite.txt"
-        self.ffs = ffs(self.path, self.root, self.fk)
+        self.frame_favorite = frame_favorite
+        self.path = r"D:\favorite.txt"
+        self.ffs = ffs(self.path, self.frame_favorite, self.fk)
         style_font = "Arial"
         font_size = 11
         toolbar = Canvas(root, width=1024, height=30, background="black", border=2)

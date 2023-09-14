@@ -96,38 +96,24 @@ class Keyboard:
         ButtonEnter = tk.Button(frame_keyboard, text="Enter", height=2, width=10, background="light blue",
                                 command=lambda: fk.print_value("\n")).place(x=650, y=position_last_line-45)
         ButtonZ = tk.Button(frame_keyboard, text="z", height=2, width=2, background="light blue",
-                            command=lambda: [wp.control_prediction("z"), fk.control_button("z", 400, position_last_line)]).place(x=400, y=position_last_line)
+                            command=lambda: [wp.control_prediction("z"), fk.control_button("z", 400, position_last_line-20)]).place(x=400, y=position_last_line)
         ButtonX = tk.Button(frame_keyboard, text="x", height=2, width=2, background="light blue",
-                            command=lambda: [wp.control_prediction("x"), fk.control_button("x", 425, position_last_line)]).place(x=425, y=position_last_line)
+                            command=lambda: [wp.control_prediction("x"), fk.control_button("x", 425, position_last_line-20)]).place(x=425, y=position_last_line)
         ButtonC = tk.Button(frame_keyboard, text="c", height=2, width=2, background="light blue",
-                            command=lambda: [wp.control_prediction("c"), fk.control_button("c", 450, position_last_line)]).place(x=450, y=position_last_line)
+                            command=lambda: [wp.control_prediction("c"), fk.control_button("c", 450, position_last_line-20)]).place(x=450, y=position_last_line)
         ButtonV = tk.Button(frame_keyboard, text="v", height=2, width=2, background="light blue",
-                            command=lambda: [wp.control_prediction("v"), fk.control_button("v", 475, position_last_line)]).place(x=475, y=position_last_line)
+                            command=lambda: [wp.control_prediction("v"), fk.control_button("v", 475, position_last_line-20)]).place(x=475, y=position_last_line)
         ButtonB = tk.Button(frame_keyboard, text="b", height=2, width=2, background="light blue",
-                            command=lambda: [wp.control_prediction("b"), fk.control_button("b", 500, position_last_line)]).place(x=500, y=position_last_line)
+                            command=lambda: [wp.control_prediction("b"), fk.control_button("b", 500, position_last_line-20)]).place(x=500, y=position_last_line)
         ButtonN = tk.Button(frame_keyboard, text="n", height=2, width=2, background="light blue",
-                            command=lambda: [wp.control_prediction("n"), fk.control_button("n", 525, position_last_line)]).place(x=525, y=position_last_line)
+                            command=lambda: [wp.control_prediction("n"), fk.control_button("n", 525, position_last_line-20)]).place(x=525, y=position_last_line)
         ButtonM = tk.Button(frame_keyboard, text="m", height=2, width=2, background="light blue",
-                            command=lambda: [wp.control_prediction("m"), fk.control_button("m", 550, position_last_line)]).place(x=550, y=position_last_line)
-        buttonZ = tk.Button(frame_keyboard, text="Z", height=2, width=2, background="light blue",
-                            command=lambda: [wp.control_prediction("Z"), fk.control_button("Z", 400, position_last_line)]).place(x=400, y=position_last_line)
-        ButtonX = tk.Button(frame_keyboard, text="x", height=2, width=2, background="light blue",
-                            command=lambda: fk.control_button("x", 425, 500)).place(x=425, y=position_last_line)
-        ButtonC = tk.Button(frame_keyboard, text="c", height=2, width=2, background="light blue",
-                            command=lambda: fk.control_button("c", 450, 500)).place(x=450, y=position_last_line)
-        ButtonV = tk.Button(frame_keyboard, text="v", height=2, width=2, background="light blue",
-                            command=lambda: fk.control_button("v", 475, 500)).place(x=475, y=position_last_line)
-        ButtonB = tk.Button(frame_keyboard, text="b", height=2, width=2, background="light blue",
-                            command=lambda: fk.control_button("b", 500, 500)).place(x=500, y=position_last_line)
-        ButtonN = tk.Button(frame_keyboard, text="n", height=2, width=2, background="light blue",
-                            command=lambda: fk.control_button("n", 525, 500)).place(x=525, y=position_last_line)
-        ButtonM = tk.Button(frame_keyboard, text="m", height=2, width=2, background="light blue",
-                            command=lambda: fk.control_button("m", 550, 500)).place(x=550, y=position_last_line)
+                            command=lambda: [wp.control_prediction("m"), fk.control_button("m", 550, position_last_line-20)]).place(x=550, y=position_last_line)
 
         ButtonComma = tk.Button(frame_keyboard, text=",", height=2, width=2, background="light blue",
                                 command=lambda: fk.print_value(",")).place(x=575, y=position_last_line)
         ButtonDot = tk.Button(frame_keyboard, text=".", height=2, width=2, background="light blue",
-                              command=lambda: fk.print_value(",")).place(x=600, y=position_last_line)
+                              command=lambda: fk.print_value(".")).place(x=600, y=position_last_line)
         ButtonSpace = tk.Button(frame_keyboard, text=" ", height=2, width=10, background="light blue",
                                 command=lambda: fk.print_value(" ")).place(x=475, y=position_last_line+45)
         ButtonSeven = tk.Button(frame_keyboard, text="7", height=2, width=2, background="light blue",

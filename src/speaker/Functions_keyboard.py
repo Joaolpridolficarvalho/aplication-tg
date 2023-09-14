@@ -11,6 +11,8 @@ class Functions_keyboard:
         value = str(value)
         if self.uppercase:
             value = value.upper()
+        print(value)
+        
         self.text_field.insert("end", value)
 
     def get_text(self):

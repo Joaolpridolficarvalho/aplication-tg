@@ -1,32 +1,32 @@
-from tkinter import Button, Frame
+import tkinter as tk
 from File_manager import File_manager as fm
-
+from Functions_keyboard import Functions_keyboard as fk
 class Menu:
     def __init__(self, root, text_field):
         self.root = root
         self.text_field = text_field
-
+        
 
     def open_menu(self):
         self.show_menu()
 
     def show_menu(self):
         global frame_menu
-        frame_menu = Frame(self.root, width=55, height=60, background="#07C7F2")
+        frame_menu = tk.Frame(self.root, width=55, height=60, background="#07C7F2")
         frame_menu.place(x=950, y=24)
 
         global open_file
-        open_file = Button(self.root, text="Abrir", width=5, height=1, font=("Arial", 12),
+        open_file = tk.Button(self.root, text="Abrir", width=5, height=1, font=("Arial", 12),
                            border=0, background="#07C7F2", foreground="white",
-                           command=self.open_file())
+                           command=self.open_file)
         open_file.place(x=950, y=30)
         open_file.bind("<Enter>", func=lambda e: open_file.config(background="gray"))
         open_file.bind("<Leave>", func=lambda e: open_file.config(background="#07C7F2"))
 
         global save_file
-        save_file = Button(self.root, text="Salvar", width=5, height=1, font=("Arial", 12),
+        save_file = tk.Button(self.root, text="Salvar", width=5, height=1, font=("Arial", 12),
                            border=0, background="#07C7F2", foreground="white",
-                           command=self.save_file())
+                           command=self.save_file)
         save_file.place(x=950, y=54)
         save_file.bind("<Enter>", func=lambda e: save_file.config(background="gray"))
         save_file.bind("<Leave>", func=lambda e: save_file.config(background="#07C7F2"))
@@ -37,7 +37,32 @@ class Menu:
         save_file.destroy()
 	
     def open_file(self):
-    	fm().select_file(self.text_field)
+    	self.close()
+    	fm.select_file(self.text_field)
+
     	
     def save_file(self):
     	fm().save_file(self.text_field)
+    	self.close()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

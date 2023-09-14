@@ -9,7 +9,7 @@ class File_manager:
 
         with open(file_name, mode) as f:
             text = str(text)
-            print(text)
+
             f.write(text)
 
     def read_file(self, file_name):
@@ -17,21 +17,10 @@ class File_manager:
             content = f.read()
             return content
 
-    def replace_sentence(self, old_sentence, new_sentence, file_name):
-        content = self.read_file(file_name)
-        new_sentence = str(new_sentence)
-        content = content.replace(old_sentence, new_sentence)
-        self.edit_file(content, file_name)
     def get_sentence(self, file_name):
         content = self.read_file(file_name)
         sentence = content.split(self.delimiter)
-        print(sentence)
         return sentence
-
-    def search_sentence(self, sentence, file_name):
-        content = self.read_file(file_name)
-        result = content.find(sentence)
-        return result
 
     def delete_sentence(self, sentence, file_name):
         sentence = str(sentence + self.delimiter)
@@ -47,7 +36,7 @@ class File_manager:
         if filename:
             content = self.read_file(filename)
             fk(text_field=text_field).print_value(content)
-
+# TODO Treat the exeptions
     def save_file(self, text_field):
         filename = filedialog.asksaveasfilename(initialdir="/", defaultextension=".txt",
                                                 title="Salvar", filetypes=[("Arquivos de texto", "*.txt")])

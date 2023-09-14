@@ -58,14 +58,16 @@ class Word_predictor:
         self.predictions = []
         self.x = 400
     def control_prediction(self, text):
-        try:
-            self.predictions.clear()
-        finally:
-            self.set_text(text)
-            text = self.get_text()
-            prediction = self.request(text)
-            prediction = self.get_prediction(prediction)
-            self.show_prediction(prediction)
+        print("ok")
+#        try:
+ #           self.predictions.clear()
+  #      finally:
+   #         pass
+           # self.set_text(text)
+            #text = self.get_text()
+            #prediction = self.request(text)
+            #prediction = self.get_prediction(prediction)
+            #self.show_prediction(prediction)
 
 
 if __name__ == "__main__":

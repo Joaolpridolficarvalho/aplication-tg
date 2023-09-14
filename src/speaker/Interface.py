@@ -10,7 +10,7 @@ class Interface:
 
 
 
-    #  To Solve
+    
     text_field = tb(root).text_field()
     buttonSpeake = Button(root, text="Speak", height=20, width=10, command=Terminal(text_field).speak).place(x=780, y=35)
     frame_favorite = Frame(root, width=350, height=300, background="yellow", border=2).place(x=0, y=15)
