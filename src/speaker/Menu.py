@@ -38,7 +38,7 @@ class Menu:
 	
     def open_file(self):
     	self.close()
-    	fm.select_file(self.text_field)
+    	fm().select_file(self.text_field)
 
     	
     def save_file(self):

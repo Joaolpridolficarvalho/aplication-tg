@@ -1,6 +1,6 @@
 import File_manager as fm
 
-from tkinter import Label, Canvas, Button, Scrollbar
+from tkinter import Label, Canvas, Button, ttk
 import Images as img
 
 
@@ -20,12 +20,13 @@ class Functions_favorite_section:
         self.delimiter = ">/"
         self.x = 20
         self.y = 45
-        self.scrollbar = Scrollbar(self.frame_favorite, orient="vertical")
+        self.scrollbar = ttk.Scrollbar(self.frame_favorite, orient="vertical")
         self.scrollbar.pack(side="right", fill="y")
-        self.frame = Canvas(self.frame_favorite)
+        self.frame = Canvas(self.frame_favorite, background="green")
         self.frame.pack(side="left", fill="both", expand=True)
-        self.frame.config(yscrollcommand=self.scrollbar.set)
-
+        self.scrollbar.config(command=self.frame.yview)
+        self.frame.update()
+        self.frame.config(scrollregion=self.frame.bbox("all"))
     #ok
     def add_favorite(self):
 
@@ -52,24 +53,27 @@ class Functions_favorite_section:
                 label.bind("label", '<Button-1>', lambda event: self.fk.print_value(label))
                 self.favorite.append(label)
                 self.y += 80
-                print(index)
+                print(index, favorite)
+                
         self.y = 30
         print(len(self.favorite))
     def show_trash(self):
         for index, favorite in enumerate(self.favorite):
-            if favorite !='': 
-               self.button_trash.append(Button(self.frame_favorite, text="exclui",
-                                               command=lambda: self.delete_favorite(self.favorite[index].cget("text")), background="red",                                border=2,
-                                               height=3, width=3))
-               self.button_trash[index].place(x=self.x+200, y=self.y + 10)
-               self.y += 80
+            if favorite != '':
+                self.button_trash.append(Button(self.frame_favorite, text="exclui",
+                                                command=lambda i=index: self.delete_favorite(self.favorite[i].cget("text")), background="red",
+                                                border=2,
+                                                height=3, width=3))
+                self.button_trash[index].place(x=self.x + 200, y=self.y + 10)
+                self.y += 80
         self.y = 30
+
 
     def show_pencil(self):
         for index, favorite in enumerate(self.favorite):
             if favorite !='':
                self.button_pencil.append(Button(self.frame_favorite, text="edita",
-                                               command=lambda: self.edit_favorite(self.favorite[index].cget("text")), background="#07C7F2", border=2, height=3, width=3))
+                                               command=lambda i=index: self.delete_favorite(self.favorite[i].cget("text")), background="#07C7F2", border=2, height=3, width=3))
                self.button_pencil[index].place(x=self.x + 250, y=self.y + 10)
                self.y += 80
         self.y = 30

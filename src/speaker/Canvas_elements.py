@@ -1,12 +1,13 @@
-from tkinter import Canvas, ttk, Label
+from tkinter import Canvas, ttk, Label, Button
 from Functions_favorite_section import Functions_favorite_section as ffs
-
+from Menu import Menu as menu
 
 class Canvas_elements:
-    def __init__(self, root, fk, frame_favorite):
+    def __init__(self, root, fk, frame_favorite, text_field):
         self.root = root
         self.fk = fk
         self.frame_favorite = frame_favorite
+        self.text_field = text_field
         self.path = r"D:\favorite.txt"
         self.ffs = ffs(self.path, self.frame_favorite, self.fk)
         style_font = "Arial"
@@ -27,7 +28,8 @@ class Canvas_elements:
         toolbar.tag_bind("button_favorite", '<Button-1>',
                          lambda event: self.ffs.add_favorite())
         toolbar.tag_bind("text_favorite", '<Button-1>', lambda event: self.ffs.add_favorite())
+        menu_button = Button(toolbar, text="☰", background="black", foreground="white", command= menu(root, text_field).show_menu).place(x=960, y=5)
 
         pitch = Label(self.root, text="Tom", font=[style_font, font_size], background="black",
                       foreground="white").place(x=400, y=8)
-        pitch_choose = ttk.Scale(self.root, from_=0, to=100, orient="horizontal").place(x=450, y=8)
+        pitch_choose = ttk.Scale(self.frame_favorite, from_=0, to=100, orient="horizontal").place(x=450, y=8)
