@@ -1,30 +1,31 @@
-from tkinter import Frame, Button, END
-
+from tkinter import Frame, Button, END, Menu, SEL
+import pyperclip
 
 class Functions_keyboard:
     def __init__(self, root=None, text_field=None):
         self.root = root
         self.uppercase = False
         self.text_field = text_field
-
+        self. text_field.bind("<Button-3>", self.show_menu)
+        self.text_field.bind("<Button-1>", self.change_position_cursor)
     def print_value(self, value):
         value = str(value)
         if self.uppercase:
             value = value.upper()
-        print(value)
-        
-        self.text_field.insert("end", value)
+        print(self.text_field.index('current'))
+        self.text_field.insert(self.change_position_cursor(),value)
 
     def get_text(self):
         setence = self.text_field.get("1.0", END)
         return setence
 
     def backspace(self):
-        self.text_field.delete("end-2c")
+        current_index = self.text_field.index('current')
+        print(current_index)
+        self.text_field.delete(current_index + '-1c')
 
     def change_position_cursor(self, event=None, new_position_cursor=1):
-        position_cursor = self.text_field.index("insert")
-        self.text_field.icursor(position_cursor + new_position_cursor)
+        return self.text_field.index("insert")
 
     def clear_text(self):
         self.text_field.delete("1.0", END)
@@ -212,3 +213,43 @@ class Functions_keyboard:
             self.uppercase = False
         else:
             self.uppercase = True
+    
+    
+    def show_menu(self, event):
+        self.menu = Menu(self.root, tearoff=False)
+        self.menu.add_command(label="Copy", command=self.popup_copy)
+        self.menu.add_command(label="Cut", command=self.popup_cut)
+     #   self.menu.add_command(label="Select all", command=self.popup_select_all)
+      
+        try:
+            self.menu.post(event.x_root, event.y_root)
+        finally:
+            pass
+    
+    def popup_copy(self):
+        self.root.clipboard_append(self.text_field.selection_get())
+        
+    def popup_cut(self):   
+        self.popup_copy()
+        self.text_field.delete("sel.first", "sel.last")
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
