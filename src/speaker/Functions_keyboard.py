@@ -1,32 +1,39 @@
-from tkinter import Frame, Button, END, Menu, SEL
-import pyperclip
-
+from tkinter import Frame, Button, END, Menu, SEL, INSERT
 class Functions_keyboard:
     def __init__(self, root=None, text_field=None):
         self.root = root
         self.uppercase = False
         self.text_field = text_field
-        self. text_field.bind("<Button-3>", self.show_menu)
-        self.text_field.bind("<Button-1>", self.change_position_cursor)
+        self.text_field.bind("<Button-3>", self.show_menu)
+        self.get_position_cursor()
+        self.text_field.bind("<Button-1>", self.get_position_cursor)
+        self.x = 0
+        self.y = 0
+
     def print_value(self, value):
         value = str(value)
         if self.uppercase:
             value = value.upper()
-        print(self.text_field.index('current'))
-        self.text_field.insert(self.change_position_cursor(),value)
+        cursor_position = self.text_field.index(INSERT)
+        self.text_field.insert(cursor_position, value)
 
     def get_text(self):
-        setence = self.text_field.get("1.0", END)
-        return setence
+        sentence = self.text_field.get("1.0", END)
+        return sentence
 
     def backspace(self):
-        current_index = self.text_field.index('current')
-        print(current_index)
-        self.text_field.delete(current_index + '-1c')
+        cursor_position = self.text_field.index(INSERT)
+        if cursor_position != "1.0":
+            self.text_field.delete(cursor_position + "-1c")
 
-    def change_position_cursor(self, event=None, new_position_cursor=1):
-        return self.text_field.index("insert")
+    def get_position_cursor(self, event=None):
+        try:
+            cursor_position = self.text_field.index(INSERT)
+            self.y, self.x = map(int, cursor_position.split('.'))
+        except Exception as e:
+            pass
 
+    
     def clear_text(self):
         self.text_field.delete("1.0", END)
 
@@ -40,24 +47,60 @@ class Functions_keyboard:
         bar = Frame(self.root, width=70, height=20, background="red")
         bar.place(x=x - 5, y=y - 5)
         global letterA
-        letterA = Button(bar, text="a", height=1, width=1, background="light blue",
-                         command=lambda: self.control_syllable_bar("a")).grid(row=0, column=0)
+        letterA = Button(
+            bar,
+            text="a",
+            height=1,
+            width=1,
+            background="light blue",
+            command=lambda: self.control_syllable_bar("a"),
+        ).grid(row=0, column=0)
         global letterE
-        letterE = Button(bar, text="e", height=1, width=1, background="light blue",
-                         command=lambda: self.control_syllable_bar("e")).grid(row=0, column=1)
+        letterE = Button(
+            bar,
+            text="e",
+            height=1,
+            width=1,
+            background="light blue",
+            command=lambda: self.control_syllable_bar("e"),
+        ).grid(row=0, column=1)
         global letterI
-        letterI = Button(bar, text="i", height=1, width=1, background="light blue",
-                         command=lambda: self.control_syllable_bar("i")).grid(row=0, column=2)
+        letterI = Button(
+            bar,
+            text="i",
+            height=1,
+            width=1,
+            background="light blue",
+            command=lambda: self.control_syllable_bar("i"),
+        ).grid(row=0, column=2)
         global letterO
-        letterO = Button(bar, text="o", height=1, width=1, background="light blue",
-                         command=lambda: self.control_syllable_bar("o")).grid(row=0, column=3)
+        letterO = Button(
+            bar,
+            text="o",
+            height=1,
+            width=1,
+            background="light blue",
+            command=lambda: self.control_syllable_bar("o"),
+        ).grid(row=0, column=3)
         global letterU
-        letterU = Button(bar, text="u", height=1, width=1, background="light blue",
-                         command=lambda: self.control_syllable_bar("u")).grid(row=0, column=4)
+        letterU = Button(
+            bar,
+            text="u",
+            height=1,
+            width=1,
+            background="light blue",
+            command=lambda: self.control_syllable_bar("u"),
+        ).grid(row=0, column=4)
 
         global letterAO
-        letterAO = Button(bar, text="ão", height=1, width=1, background="light blue",
-                          command=lambda: self.control_syllable_bar("ão")).grid(row=0, column=5)
+        letterAO = Button(
+            bar,
+            text="ão",
+            height=1,
+            width=1,
+            background="light blue",
+            command=lambda: self.control_syllable_bar("ão"),
+        ).grid(row=0, column=5)
 
     def hide_syllable_bar(self):
         bar.destroy()
@@ -91,44 +134,105 @@ class Functions_keyboard:
         bar = Frame(self.root, width=70, height=20, background="red")
         bar.place(x=x - 5, y=y - 5)
         global letterUA
-        letterUA = Button(bar, text="ua", height=1, width=1, background="light blue",
-                          command=lambda: self.control_syllable_bar("ua")).grid(row=0, column=0)
+        letterUA = Button(
+            bar,
+            text="ua",
+            height=1,
+            width=1,
+            background="light blue",
+            command=lambda: self.control_syllable_bar("ua"),
+        ).grid(row=0, column=0)
         global letterUE
-        letterUE = Button(bar, text="ue", height=1, width=1, background="light blue",
-                          command=lambda: self.control_syllable_bar("ue")).grid(row=0, column=1)
+        letterUE = Button(
+            bar,
+            text="ue",
+            height=1,
+            width=1,
+            background="light blue",
+            command=lambda: self.control_syllable_bar("ue"),
+        ).grid(row=0, column=1)
         global letterUI
-        letterUI = Button(bar, text="ui", height=1, width=1, background="light blue",
-                          command=lambda: self.control_syllable_bar("ui")).grid(row=0, column=2)
+        letterUI = Button(
+            bar,
+            text="ui",
+            height=1,
+            width=1,
+            background="light blue",
+            command=lambda: self.control_syllable_bar("ui"),
+        ).grid(row=0, column=2)
         global letterUO
-        letterUO = Button(bar, text="uo", height=1, width=1, background="light blue",
-                          command=lambda: self.control_syllable_bar("uo")).grid(row=0, column=3)
+        letterUO = Button(
+            bar,
+            text="uo",
+            height=1,
+            width=1,
+            background="light blue",
+            command=lambda: self.control_syllable_bar("uo"),
+        ).grid(row=0, column=3)
         global letterU
-        letterU = Button(bar, text="uu", height=1, width=1, background="light blue",
-                         command=lambda: self.control_syllable_bar("u")).grid(row=0, column=4)
+        letterU = Button(
+            bar,
+            text="uu",
+            height=1,
+            width=1,
+            background="light blue",
+            command=lambda: self.control_syllable_bar("u"),
+        ).grid(row=0, column=4)
 
         global letterUAO
-        letterUAO = Button(bar, text="uão", height=1, width=1, background="light blue",
-                           command=lambda: self.control_syllable_bar("uão")).grid(row=0, column=5)
+        letterUAO = Button(
+            bar,
+            text="uão",
+            height=1,
+            width=1,
+            background="light blue",
+            command=lambda: self.control_syllable_bar("uão"),
+        ).grid(row=0, column=5)
 
     def accents_bar(self, x, y, letter):
         global bar
         bar = Frame(self.root, width=70, height=20, background="red")
         bar.place(x=x - 5, y=y - 5)
         global agud
-        agud = Button(bar, text="´", height=1, width=1, background="light blue",
-                      command=lambda: self.set_accents("´", letter)).grid(row=0, column=0)
+        agud = Button(bar, text="´",
+            height=1,
+            width=1,
+            background="light blue",
+            command=lambda: self.set_accents("´", letter),
+        ).grid(row=0, column=0)
         global circumflex
-        circumflex = Button(bar, text="^", height=1, width=1, background="light blue",
-                            command=lambda: self.set_accents("^", letter)).grid(row=0, column=1)
+        circumflex = Button(
+            bar,
+            text="^",
+            height=1,
+            width=1,
+            background="light blue",
+            command=lambda: self.set_accents("^", letter),
+        ).grid(row=0, column=1)
         global tilde
-        tilde = Button(bar, text="~", height=1, width=1, background="light blue",
-                       command=lambda: self.set_accents("~", letter)).grid(row=0, column=2)
+        tilde = Button(
+            bar,
+            text="~",
+            height=1,
+            width=1,
+            background="light blue",
+            command=lambda: self.set_accents("~", letter),
+        ).grid(row=0, column=2)
         global crasis
-        crasis = Button(bar, text="`", height=1, width=1, background="light blue",
-                        command=lambda: self.set_accents("`", letter)).grid(row=0, column=3)
+        crasis = Button(
+            bar,
+            text="`",
+            height=1,
+            width=1,
+            background="light blue",
+            command=lambda: self.set_accents("`", letter),
+        ).grid(row=0, column=3)
         global trema
-        trema = Button(bar, text="¨", height=1, width=1, background="light blue",
-                       command=lambda: self.set_accents("¨", letter)).grid(row=0, column=4)
+        trema = Button(
+            bar,
+            text="¨",
+            height=1, width=1, background="light blue", command=lambda: self.set_accents("¨", letter),
+        ).grid(row=0, column=4)
 
     def set_accents(self, accent, letter):
         if letter == "a" and accent == "´":
@@ -213,43 +317,54 @@ class Functions_keyboard:
             self.uppercase = False
         else:
             self.uppercase = True
-    
-    
+
     def show_menu(self, event):
         self.menu = Menu(self.root, tearoff=False)
-        self.menu.add_command(label="Copy", command=self.popup_copy)
-        self.menu.add_command(label="Cut", command=self.popup_cut)
-     #   self.menu.add_command(label="Select all", command=self.popup_select_all)
-      
+        self.menu.add_command(label="Copy", command=self.copy)
+        self.menu.add_command(label="Paste", command=self.paste)
+        self.menu.add_command(label="Cut", command=self.cut)
+        self.menu.add_command(label="Select all", command=self.select_all)
+
         try:
             self.menu.post(event.x_root, event.y_root)
         finally:
             pass
-    
-    def popup_copy(self):
+
+    def copy(self):
         self.root.clipboard_append(self.text_field.selection_get())
-        
-    def popup_cut(self):   
-        self.popup_copy()
+
+    def cut(self):
+        self.copy()
         self.text_field.delete("sel.first", "sel.last")
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+    def select_all(self):
+        self.text_field.tag_add(SEL, "1.0", END)
+        text =self.text_field.mark_set(INSERT, "1.0")
+        selection = self.text_field.get(SEL_FIRST, SEL_LAST)
+        print(selection)
+        self.text_field.see(INSERT)
+        return "break"
+
+    def paste(self):
+        self.print_value(self.root.selection_get(selection="CLIPBOARD"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

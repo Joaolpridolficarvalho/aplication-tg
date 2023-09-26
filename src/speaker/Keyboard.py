@@ -46,8 +46,8 @@ class Keyboard:
                                    command=lambda: [fk.set_uppercase(), self.change_color()])
         ButtonCapsLock.place(x=320, y=position_last_line-45)
         ButtonA = tk.Button(frame_keyboard, text="a", height=2, width=2, background="light blue",
-                            command=lambda: fk.control_button("a", 600, position_last_line-30))
-        ButtonA.bind("<Button-3>", lambda event: fk.control_accents("a", 650, position_last_line-45))
+                            command=lambda: fk.control_button("a", 400, position_last_line+45))
+        ButtonA.bind("<Button-3>", lambda event: fk.control_accents("a", 650, position_last_line-60))
         ButtonA.place(x=400, y=position_last_line-45)
 
         ButtonS = tk.Button(frame_keyboard, text="s", height=2, width=2, background="light blue",
