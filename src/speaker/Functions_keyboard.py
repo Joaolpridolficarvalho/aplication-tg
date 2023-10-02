@@ -7,25 +7,27 @@ class Functions_keyboard:
         self.text_field.bind("<Button-3>", self.show_menu)
         self.get_position_cursor()
         self.text_field.bind("<Button-1>", self.get_position_cursor)
+        self.text_field.bind("<Button-1>", self.close_menu)
         self.x = 0
         self.y = 0
-
     def print_value(self, value):
         value = str(value)
         if self.uppercase:
             value = value.upper()
-        cursor_position = self.text_field.index(INSERT)
+        self.selection_verification()
+        cursor_position = self.text_field.index(INSERT)  
         self.text_field.insert(cursor_position, value)
-
-    def get_text(self):
-        sentence = self.text_field.get("1.0", END)
-        return sentence
 
     def backspace(self):
         cursor_position = self.text_field.index(INSERT)
         if cursor_position != "1.0":
+            self.selection_verification
+            cursor_position = self.text_field.index(INSERT)     
             self.text_field.delete(cursor_position + "-1c")
 
+    def get_text(self):
+        return  self.text_field.get("1.0", END)
+        
     def get_position_cursor(self, event=None):
         try:
             cursor_position = self.text_field.index(INSERT)
@@ -47,60 +49,18 @@ class Functions_keyboard:
         bar = Frame(self.root, width=70, height=20, background="red")
         bar.place(x=x - 5, y=y - 5)
         global letterA
-        letterA = Button(
-            bar,
-            text="a",
-            height=1,
-            width=1,
-            background="light blue",
-            command=lambda: self.control_syllable_bar("a"),
-        ).grid(row=0, column=0)
+        letterA = Button(bar, text="a", height=1, width=1, background="light blue", command=lambda: self.control_syllable_bar("a") ).grid(row=0, column=0)
         global letterE
-        letterE = Button(
-            bar,
-            text="e",
-            height=1,
-            width=1,
-            background="light blue",
-            command=lambda: self.control_syllable_bar("e"),
-        ).grid(row=0, column=1)
+        letterE = Button( bar, text="e", height=1, width=1, background="light blue", command=lambda: self.control_syllable_bar("e") ).grid(row=0, column=1)
         global letterI
-        letterI = Button(
-            bar,
-            text="i",
-            height=1,
-            width=1,
-            background="light blue",
-            command=lambda: self.control_syllable_bar("i"),
-        ).grid(row=0, column=2)
+        letterI = Button(bar, text="i", height=1, width=1, background="light blue", command=lambda: self.control_syllable_bar("i") ).grid(row=0, column=2)
         global letterO
-        letterO = Button(
-            bar,
-            text="o",
-            height=1,
-            width=1,
-            background="light blue",
-            command=lambda: self.control_syllable_bar("o"),
-        ).grid(row=0, column=3)
+        letterO = Button(bar, text="o", height=1,  width=1, background="light blue", command=lambda: self.control_syllable_bar("o") ).grid(row=0, column=3)
         global letterU
-        letterU = Button(
-            bar,
-            text="u",
-            height=1,
-            width=1,
-            background="light blue",
-            command=lambda: self.control_syllable_bar("u"),
-        ).grid(row=0, column=4)
+        letterU = Button(bar, text="u", height=1, width=1, background="light blue", command=lambda: self.control_syllable_bar("u") ).grid(row=0, column=4)
 
         global letterAO
-        letterAO = Button(
-            bar,
-            text="ão",
-            height=1,
-            width=1,
-            background="light blue",
-            command=lambda: self.control_syllable_bar("ão"),
-        ).grid(row=0, column=5)
+        letterAO = Button(bar, text="ão", height=1, width=1, background="light blue", command=lambda: self.control_syllable_bar("ão") ).grid(row=0, column=5)
 
     def hide_syllable_bar(self):
         bar.destroy()
@@ -331,7 +291,11 @@ class Functions_keyboard:
             pass
 
     def copy(self):
-        self.root.clipboard_append(self.text_field.selection_get())
+        try:
+            self.root.clipboard_clear()
+            self.root.clipboard_append(self.text_field.selection_get())
+        except:
+            pass
 
     def cut(self):
         self.copy()
@@ -339,16 +303,23 @@ class Functions_keyboard:
 
     def select_all(self):
         self.text_field.tag_add(SEL, "1.0", END)
-        text =self.text_field.mark_set(INSERT, "1.0")
-        selection = self.text_field.get(SEL_FIRST, SEL_LAST)
-        print(selection)
+        self.text_field.mark_set(INSERT, "1.0")
         self.text_field.see(INSERT)
-        return "break"
-
+        
+    def close_menu(self, event):
+        if hasattr(self, "menu") and self.menu:
+            self.menu.destroy()
+            
     def paste(self):
-        self.print_value(self.root.selection_get(selection="CLIPBOARD"))
+        try:
+            self.print_value(self.root.selection_get(selection="CLIPBOARD"))
+        except:
+            pass
 
-
+    def selection_verification(self):
+         if self.text_field.tag_ranges(SEL):
+                        start, end = self.text_field.tag_ranges(SEL)
+                        self.text_field.delete(start, end)
 
 
 

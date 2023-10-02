@@ -46,13 +46,12 @@ class Keyboard:
                                    command=lambda: [fk.set_uppercase(), self.change_color()])
         ButtonCapsLock.place(x=320, y=position_last_line-45)
         ButtonA = tk.Button(frame_keyboard, text="a", height=2, width=2, background="light blue",
-                            command=lambda: fk.control_button("a", 400, position_last_line+45))
+                            command=lambda: fk.control_button("a", 400, position_last_line+90))
         ButtonA.bind("<Button-3>", lambda event: fk.control_accents("a", 650, position_last_line-60))
         ButtonA.place(x=400, y=position_last_line-45)
 
         ButtonS = tk.Button(frame_keyboard, text="s", height=2, width=2, background="light blue",
-
-                            command=lambda: [wp.control_prediction("s"), fk.control_button("s", 425, position_last_line-45)]).place(x=425, y=position_last_line-45)
+                            command=lambda: [wp.control_prediction("s"), fk.control_button("s", 425, position_last_line-90)]).place(x=425, y=position_last_line-45)
         ButtonD = tk.Button(frame_keyboard, text="d", height=2, width=2, background="light blue",
                             command=lambda: [wp.control_prediction("d"), fk.control_button("d", 450, position_last_line-45)]).place(x=450, y=position_last_line-45)
         ButtonF = tk.Button(frame_keyboard, text="f", height=2, width=2, background="light blue",
@@ -71,6 +70,10 @@ class Keyboard:
                             command=lambda: [wp.control_prediction("ç"), fk.control_button("ç", 625, position_last_line-45)]).place(x=625, y=position_last_line-45)
         ButtonEnter = tk.Button(frame_keyboard, text="Enter", height=2, width=10, background="light blue",
                                 command=lambda: fk.print_value("\n")).place(x=650, y=position_last_line-45)
+        ButtonShift = tk.Button(frame_keyboard, text="Shift", height=2, width=10, background="light blue",
+                                command=self.toggle_symbol_keyboard)
+        ButtonShift.place(x=320, y=position_last_line - 20)
+
         ButtonZ = tk.Button(frame_keyboard, text="z", height=2, width=2, background="light blue",
                             command=lambda: [wp.control_prediction("z"), fk.control_button("z", 400, position_last_line-20)]).place(x=400, y=position_last_line)
         ButtonX = tk.Button(frame_keyboard, text="x", height=2, width=2, background="light blue",
@@ -113,6 +116,15 @@ class Keyboard:
                               command=lambda: fk.print_value(1)).place(x=725, y=position_last_line)
         ButtonZero = tk.Button(frame_keyboard, text="0", height=2, width=2, background="light blue",
                                command=lambda: fk.print_value(0)).place(x=750, y=position_last_line+45)
+        
+       
+    def toggle_symbol_keyboard(self):
+        if self.symbol_keyboard is None:
+            self.symbol_keyboard = SymbolKeyboard(root, self.fk)
+        else:
+            # Feche o teclado de símbolos
+            # Você pode ocultá-lo ou destruir a janela, dependendo de como o implementou
+            pass
 
     def change_color(self):
         if ButtonCapsLock["background"] == "light blue":
