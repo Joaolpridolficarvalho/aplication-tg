@@ -72,7 +72,7 @@ class Keyboard:
                                 command=lambda: fk.print_value("\n")).place(x=650, y=position_last_line-45)
         ButtonShift = tk.Button(frame_keyboard, text="Shift", height=2, width=10, background="light blue",
                                 command=self.toggle_symbol_keyboard)
-        ButtonShift.place(x=320, y=position_last_line - 20)
+        ButtonShift.place(x=320, y=position_last_line )
 
         ButtonZ = tk.Button(frame_keyboard, text="z", height=2, width=2, background="light blue",
                             command=lambda: [wp.control_prediction("z"), fk.control_button("z", 400, position_last_line-20)]).place(x=400, y=position_last_line)
