@@ -1,11 +1,17 @@
-from tkinter import Button, Canvas, Label, ttk
-from File_manager import edit_file, get_sentence, delete_sentence
+import File_manager as fm
+
+from tkinter import Label, Canvas, Button, ttk
+import Images as img
+
+
+
 class Functions_favorite_section:
     def __init__(self, path, frame_favorite, fk):
         self.frame_favorite = frame_favorite
         self.path = path
-        #self.img = img.Images()
+        self.img = img.Images()
         self.fk = fk
+        self.fm = fm.File_manager()
         self.favorite = []
         self.button_trash = []
         self.button_pencil = []
@@ -19,12 +25,11 @@ class Functions_favorite_section:
         self.frame = Canvas(self.frame_favorite, background="green")
         self.frame.pack(side="left", fill="both", expand=True)
         self.scrollbar.config(command=self.frame.yview)
-        
-    #ok
+ 
     def add_favorite(self):
 
         text = self.fk.get_text()
-        edit_file(text+self.delimiter, self.path, 'a')
+        self.fm.edit_file(text+self.delimiter, self.path, 'a')
         self.control_favorite()
 
 
@@ -34,11 +39,11 @@ class Functions_favorite_section:
 
     def delete_favorite(self, text):
         
-        delete_sentence(text, self.path)
+        self.fm.delete_sentence(text, self.path)
         self.control_favorite()
 
     def show_favorite(self):
-        for index, favorite in enumerate(get_sentence(self.path)):
+        for index, favorite in enumerate(self.fm.get_sentence(self.path)):
             if favorite !='':
                 label = Label(self.frame_favorite, text=favorite, font=("Arial", 18), highlightbackground="yellow", background="yellow", width=15, anchor="w")
                 label.place(x=self.x, y=self.y + 5)
@@ -92,9 +97,11 @@ class Functions_favorite_section:
     def control_favorite(self):
         try:
             self.hide_all()
-            self.frame.update()
-            self.frame.config(scrollregion=self.frame.bbox("all"))
         finally:
             self.show_favorite()
             self.show_trash()
             self.show_pencil()
+            self.frame.config(scrollregion=self.frame.bbox("all"))
+            self.frame.update()
+        
+      

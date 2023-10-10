@@ -1,25 +1,28 @@
+from pathlib import Path
 import shlex
 import subprocess
 from Functions_keyboard import Functions_keyboard as fk
 from ibm_watson import TextToSpeechV1
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from dotenv import load_dotenv
-import os 
+import os
 
 class Terminal:
 
     def __init__(self, text_field):
         self.text_field = text_field
         self.fk = fk(text_field=self.text_field)
-        self.text = self.fk.get_text().strip()
-        self.voice = ""
         
+        self.voice = ""
+        self.path = Path("/home/joao/Documents/falaai/cod/src/speaker/audio.wav")
+        load_dotenv('.env')
+
     def speak(self):
-        if os.path.isfile(f'{self.text}.wav',):
-            self.play
+        if os.path.isfile(self.path):
+            self.play()
         else:
-            subprocess.run(command, shell=False)
-            command = ['aplay', f'./{self.text}.wav']
+            text = self.fk.get_text().strip()
+            command = ['espeak-ng', '-w', self.path, text]
             subprocess.run(command, shell=False)
             self.play()
 
@@ -30,64 +33,40 @@ class Terminal:
         command = ['espeak-ng', '--voices']
         list_voice = subprocess.check_output(command)
         return list_voice
-
+        
     def request_Watson(self):
-        authenticator = IAMAuthenticator(apikey='YOUR_API_KEY')  # Replace with your API key
-        self.text_to_speech = TextToSpeechV1(
-            authenticator=authenticator,
-            version='2019-07-12',  # Adjust the version as needed
-        )
+        text = str(self.fk.get_text())
+        apikey = os.getenv("WATSON")  
+        authenticator = IAMAuthenticator(apikey)
+        text_to_speech = TextToSpeechV1( authenticator=authenticator )
         text_to_speech.set_service_url('https://api.au-syd.text-to-speech.watson.cloud.ibm.com/instances/c10e6d85-723b-4b62-97f0-553e85561fb7')
- def save_file(self):
-    reponse = send_requese()
-     with open(f'{self.text}.wav', 'wb') as audio_file:
-        audio_file.write(response.content)
-        
- def send_request(self):
-         return  self.text_to_speech.synthesize(self.text, voice=self.voice, accept='audio/wav').get_result()
-         
+        response = text_to_speech.synthesize(text, voice="pt-BR_IsabelaV3Voice", accept='audio/wav').get_result().content
+        return response
+
+    def save_file(self):
+        response = self.request_Watson()
+        with open(self.path, 'wb') as audio_file:
+            audio_file.write(response)
+       
     def play(self):
-           subprocess.run(command, shell=False)
-        command = ['aplay', f'./{self.text}.wav']
-        subprocess.run(command, shell=False)
-  def control(self):      
+        command = ['aplay', str(self.path)]  # Converta o caminho para uma string
+        subprocess.call(command)
+
+    def control(self):
         try:
-            self.request_Watson()
             self.save_file()
-        finally:
+        except Exception as e:
+            print(e)
             self.speak()
-            
-      
- 
-        
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
+
+
+
+
+
+
+
+
+
+
+

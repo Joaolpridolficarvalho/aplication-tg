@@ -26,8 +26,8 @@ class Canvas_elements:
         text_favorite = toolbar.create_text(325, 15, text="Favoritar", fill="white", font=[style_font, font_size],
                                             tags="text_favorite")
         toolbar.tag_bind("button_favorite", '<Button-1>',
-                         lambda event: self.ffs.add_favorite())
-        toolbar.tag_bind("text_favorite", '<Button-1>', lambda event: self.ffs.add_favorite())
+                         lambda event: self.ffs.add_favorite)
+        toolbar.tag_bind("text_favorite", '<Button-1>', lambda event: self.ffs.add_favorite)
         menu_button = Button(toolbar, text="☰", background="black", foreground="white", command= menu(root, text_field).show_menu).place(x=960, y=5)
 
         pitch = Label(self.root, text="Tom", font=[style_font, font_size], background="black",

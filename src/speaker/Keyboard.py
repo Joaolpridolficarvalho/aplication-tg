@@ -1,5 +1,5 @@
 import tkinter as tk
-
+from Symbol_keyboard import Symbol_keyboard
 from Word_predictor import Word_predictor
 
 
@@ -10,7 +10,7 @@ class Keyboard:
         fk = fk
         wp = Word_predictor(root=frame_keyboard, fk=fk)
         position_last_line = 130
-
+        self.symbol_keyboard = None
         ButtonQ = tk.Button(frame_keyboard, text="q", height=2, width=2, background="light blue",
                             command=lambda: [wp.control_prediction("q"), fk.control_button("q", 400, 300)]).place(x=400, y=position_last_line-90)
         ButtonW = tk.Button(frame_keyboard, text="w", height=2, width=2, background="light blue",
@@ -120,14 +120,28 @@ class Keyboard:
        
     def toggle_symbol_keyboard(self):
         if self.symbol_keyboard is None:
-            self.symbol_keyboard = SymbolKeyboard(root, self.fk)
+            self.symbol_keyboard = Symbol_keyboard(self.root, self.fk)
         else:
-            # Feche o teclado de símbolos
-            # Você pode ocultá-lo ou destruir a janela, dependendo de como o implementou
-            pass
+          self.symbol_keyboard.destoy
 
     def change_color(self):
         if ButtonCapsLock["background"] == "light blue":
             ButtonCapsLock.configure(background="#0752F2")
         else:
             ButtonCapsLock.configure(background="light blue")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
