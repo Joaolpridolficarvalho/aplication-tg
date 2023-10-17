@@ -9,7 +9,7 @@ class Canvas_elements:
         self.frame_favorite = frame_favorite
         self.text_field = text_field
         self.path = r"D:\favorite.txt"
-        self.ffs = ffs(self.path, self.frame_favorite, self.fk)
+        self.ffs = ffs(self.path, self.frame_favorite, self.fk, self.text_field)
         style_font = "Arial"
         font_size = 11
         toolbar = Canvas(root, width=1024, height=30, background="black", border=2)

@@ -1,5 +1,5 @@
 import tkinter as tk
-from Symbol_keyboard import Symbol_keyboard
+
 from Word_predictor import Word_predictor
 
 
@@ -10,7 +10,7 @@ class Keyboard:
         fk = fk
         wp = Word_predictor(root=frame_keyboard, fk=fk)
         position_last_line = 130
-        self.symbol_keyboard = None
+
         ButtonQ = tk.Button(frame_keyboard, text="q", height=2, width=2, background="light blue",
                             command=lambda: [wp.control_prediction("q"), fk.control_button("q", 400, 300)]).place(x=400, y=position_last_line-90)
         ButtonW = tk.Button(frame_keyboard, text="w", height=2, width=2, background="light blue",
@@ -70,10 +70,6 @@ class Keyboard:
                             command=lambda: [wp.control_prediction("ç"), fk.control_button("ç", 625, position_last_line-45)]).place(x=625, y=position_last_line-45)
         ButtonEnter = tk.Button(frame_keyboard, text="Enter", height=2, width=10, background="light blue",
                                 command=lambda: fk.print_value("\n")).place(x=650, y=position_last_line-45)
-        ButtonShift = tk.Button(frame_keyboard, text="Shift", height=2, width=10, background="light blue",
-                                command=self.toggle_symbol_keyboard)
-        ButtonShift.place(x=320, y=position_last_line )
-
         ButtonZ = tk.Button(frame_keyboard, text="z", height=2, width=2, background="light blue",
                             command=lambda: [wp.control_prediction("z"), fk.control_button("z", 400, position_last_line-20)]).place(x=400, y=position_last_line)
         ButtonX = tk.Button(frame_keyboard, text="x", height=2, width=2, background="light blue",
@@ -116,32 +112,9 @@ class Keyboard:
                               command=lambda: fk.print_value(1)).place(x=725, y=position_last_line)
         ButtonZero = tk.Button(frame_keyboard, text="0", height=2, width=2, background="light blue",
                                command=lambda: fk.print_value(0)).place(x=750, y=position_last_line+45)
-        
-       
-    def toggle_symbol_keyboard(self):
-        if self.symbol_keyboard is None:
-            self.symbol_keyboard = Symbol_keyboard(self.root, self.fk)
-        else:
-          self.symbol_keyboard.destoy
 
     def change_color(self):
         if ButtonCapsLock["background"] == "light blue":
             ButtonCapsLock.configure(background="#0752F2")
         else:
             ButtonCapsLock.configure(background="light blue")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

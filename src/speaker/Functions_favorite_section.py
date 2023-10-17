@@ -6,11 +6,12 @@ import Images as img
 
 
 class Functions_favorite_section:
-    def __init__(self, path, frame_favorite, fk):
+    def __init__(self, path, frame_favorite, fk,  text_field):
         self.frame_favorite = frame_favorite
         self.path = path
+        self.text_field=text_field
         self.img = img.Images()
-        self.fk = fk
+        self.fk = fk(text_field=self.text_field)
         self.fm = fm.File_manager()
         self.favorite = []
         self.button_trash = []
@@ -70,7 +71,7 @@ class Functions_favorite_section:
         for index, favorite in enumerate(self.favorite):
             if favorite !='':
                self.button_pencil.append(Button(self.frame_favorite, text="edita",
-                                               command=lambda i=index: self.delete_favorite(self.favorite[i].cget("text")), background="#07C7F2", border=2, height=3, width=3))
+                                               command=lambda i=index: self.edit_favorite(self.favorite[i].cget("text")), background="#07C7F2", border=2, height=3, width=3))
                self.button_pencil[index].place(x=self.x + 250, y=self.y + 10)
                self.y += 80
         self.y = 30

@@ -18,9 +18,10 @@ class Terminal:
         load_dotenv('.env')
 
     def speak(self):
-        if os.path.isfile(self.path):
+        try:
+            self.save_file()
             self.play()
-        else:
+        except:
             text = self.fk.get_text().strip()
             command = ['espeak-ng', '-w', self.path, text]
             subprocess.run(command, shell=False)
@@ -49,15 +50,9 @@ class Terminal:
             audio_file.write(response)
        
     def play(self):
-        command = ['aplay', str(self.path)]  # Converta o caminho para uma string
+        command = ["aplay", str(self.path)]  # Converta o caminho para uma string
         subprocess.call(command)
 
-    def control(self):
-        try:
-            self.save_file()
-        except Exception as e:
-            print(e)
-            self.speak()
 
 
 

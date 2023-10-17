@@ -10,7 +10,7 @@ class Interface:
         self.root.configure(background="white")
 
         self.text_field = tb(self.root).text_field()
-        self.buttonSpeake = Button(self.root, text="Speak", height=15, width=10, command=Terminal(self.text_field).control).place(x=780, y=35)
+        self.buttonSpeake = Button(self.root, text="Speak", height=15, width=10, command=Terminal(self.text_field).speak).place(x=780, y=35)
         self.frame_favorite = Frame(self.root, width=350, height=270, background="yellow", border=2)
         self.frame_favorite.place(x=0, y=35)
         
