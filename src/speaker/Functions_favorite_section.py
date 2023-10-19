@@ -2,11 +2,12 @@ import File_manager as fm
 
 from tkinter import Label, Canvas, Button, ttk
 import Images as img
+from Functions_keyboard import Functions_keyboard as fk
 
 
 
 class Functions_favorite_section:
-    def __init__(self, path, frame_favorite, fk,  text_field):
+    def __init__(self, path, frame_favorite,  text_field):
         self.frame_favorite = frame_favorite
         self.path = path
         self.text_field=text_field
@@ -26,10 +27,12 @@ class Functions_favorite_section:
         self.frame = Canvas(self.frame_favorite, background="green")
         self.frame.pack(side="left", fill="both", expand=True)
         self.scrollbar.config(command=self.frame.yview)
- 
+ 	
     def add_favorite(self):
 
         text = self.fk.get_text()
+        print(text)
+        print(type(self.text_field))
         self.fm.edit_file(text+self.delimiter, self.path, 'a')
         self.control_favorite()
 

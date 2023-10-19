@@ -2,10 +2,10 @@ import openai
 from dotenv import load_dotenv
 import os
 from tkinter import Label
-
+from Functions_keyboard import Functions_keyboard as fk
 
 class Word_predictor:
-    def __init__(self, fk=None, root=None):
+    def __init__(self, root=None):
         load_dotenv()
         self.prompt = "give me the most probability words in Portuguese based on prompt:  "
         self.root = root
