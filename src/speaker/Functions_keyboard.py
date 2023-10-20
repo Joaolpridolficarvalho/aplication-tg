@@ -10,6 +10,7 @@ class Functions_keyboard:
         self.text_field.bind("<Button-1>", self.close_menu)
         self.x = 0
         self.y = 0
+       
     def print_value(self, value):
         value = str(value)
         if self.uppercase:
@@ -25,8 +26,11 @@ class Functions_keyboard:
             cursor_position = self.text_field.index(INSERT)     
             self.text_field.delete(cursor_position + "-1c")
 
+   
     def get_text(self):
-        return  self.text_field.get("1.0", END)
+        setence = self.text_field.get("1.0", END)
+        print(setence)
+        return setence
         
     def get_position_cursor(self, event=None):
         try:

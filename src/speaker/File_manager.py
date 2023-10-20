@@ -36,7 +36,6 @@ class File_manager:
         if filename:
             content = self.read_file(filename)
             fk(text_field=text_field).print_value(content)
-# TODO Treat the exeptions
     def save_file(self, text_field):
         filename = filedialog.asksaveasfilename(initialdir="/", defaultextension=".txt",
                                                 title="Salvar", filetypes=[("Arquivos de texto", "*.txt")])
