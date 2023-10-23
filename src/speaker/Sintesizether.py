@@ -23,9 +23,9 @@ class Sintesizether:
 
         # Crie o Combobox para escolher a voz
         self.voice_choose = ttk.Combobox(self.root, textvariable=self.selected_voice, values=["Carregando..."], height=5)
-        self.voice_choose.place(x=700, y=5)
+        self.voice_choose.place(x=750, y=5)
         self.voice_choose.set("Selecione uma voz")
-        self.voice_choose.config(width=20, height=1, background="white", foreground="black")
+        self.voice_choose.config(width=10, height=5, background="white", foreground="black")
 
         # Crie um botão de atualização
         self.update_button = tk.Button(self.root, text="Atualizar Vozes", command=self.update_voices)

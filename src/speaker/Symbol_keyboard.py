@@ -1,7 +1,10 @@
-class SymbolKeyboard:
-    def __init__(self, frame_keyboard, fk):
-        self.amount_of_words = 0
-        self.fk = fk
+from tkinter import Button
+from Functions_keyboard import Functions_keyboard as fk
+
+class Symbol_keyboard:
+    def __init__(self, frame_keyboard, text_field):
+        self.text_field = text_field
+        self.fk = fk(text_field=text_field)
         self.frame_keyboard = frame_keyboard
         self.symbol_buttons = []
 
@@ -16,13 +19,13 @@ class SymbolKeyboard:
         self.create_symbol_buttons(symbols_row2, 400, position_last_line - 45)
         self.create_symbol_buttons(symbols_row3, 400, position_last_line)
 
-        ButtonBackspace = tk.Button(self.frame_keyboard, text="Backspace", height=2, width=10, background="light blue",
-                                    command=lambda: self.fk.backspace())
-        ButtonBackspace.place(x=650, y=position_last_line - 90)
+        # ButtonBackspace = Button(self.frame_keyboard, text="Backspace", height=2, width=10, background="light blue",
+                                # command=lambda: self.fk.backspace())
+        # ButtonBackspace.place(x=650, y=position_last_line - 90)
 
-        ButtonCapsLock = tk.Button(self.frame_keyboard, text="Caps", height=2, width=10, background="light blue",
-                                   command=lambda: [self.fk.set_uppercase(), self.change_color()])
-        ButtonCapsLock.place(x=320, y=position_last_line - 45)
+        # ButtonCapsLock = Button(self.frame_keyboard, text="Caps", height=2, width=10, background="light blue",
+                               # command=lambda: [self.fk.set_uppercase(), self.change_color()])
+        # ButtonCapsLock.place(x=320, y=position_last_line - 45)
 
     def destroy_keyboard(self):
         for button in self.symbol_buttons:
@@ -32,8 +35,8 @@ class SymbolKeyboard:
     def create_symbol_buttons(self, symbols, x_start, y_start):
         x, y = x_start, y_start
         for symbol in symbols:
-            button = tk.Button(self.frame_keyboard, text=symbol, height=2, width=2, background="light blue",
-                               command=lambda s=symbol: self.fk.print_value(s))
+            button = Button(self.frame_keyboard, text=symbol, height=2, width=2, background="light blue",
+                           command=lambda s=symbol: self.fk.print_value(s))
             button.place(x=x, y=y)
             self.symbol_buttons.append(button)
             x += 25  # Espaçamento horizontal entre os botões

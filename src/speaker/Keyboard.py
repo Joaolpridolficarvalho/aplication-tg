@@ -4,13 +4,14 @@ from Word_predictor import Word_predictor
 
 from Functions_keyboard import Functions_keyboard as fk
 
+from Symbol_keyboard import Symbol_keyboard as sk
 class Keyboard:
     def __init__(self, frame_keyboard, text_field):
         self.text_field = text_field
-
+        self.is_activated_sk = False
         wp = Word_predictor(root=frame_keyboard)
         position_last_line = 130
-
+        self.sk = sk(frame_keyboard, self.text_field)
         ButtonQ = tk.Button(frame_keyboard, text="q", height=2, width=2, background="light blue",
                             command=lambda: [wp.control_prediction("q"), fk(text_field=self.text_field).control_button("q", 400, position_last_line+190)]).place(x=400, y=position_last_line-90)
         ButtonW = tk.Button(frame_keyboard, text="w", height=2, width=2, background="light blue",
@@ -45,6 +46,10 @@ class Keyboard:
         ButtonCapsLock = tk.Button(frame_keyboard, text="Caps", height=2, width=10, background="light blue",
                                    command=lambda: [fk(text_field=self.text_field).set_uppercase(), self.change_color()])
         ButtonCapsLock.place(x=320, y=position_last_line-45)
+        global ButtonSymbols
+        ButtonSymbols = tk.Button(frame_keyboard, text="?123", height=2, width=10, background="light blue",
+                                   command=lambda: self.control_buttonSymbols())
+        ButtonSymbols.place(x=320, y=position_last_line+60)
         ButtonA = tk.Button(frame_keyboard, text="a", height=2, width=2, background="light blue",
                             command=lambda: fk(text_field=self.text_field).control_button("a", 400, position_last_line+225))
         ButtonA.bind("<Button-3>", lambda event: fk.control_accents("a", 650, position_last_line-60))
@@ -88,7 +93,7 @@ class Keyboard:
         ButtonComma = tk.Button(frame_keyboard, text=",", height=2, width=2, background="light blue",
                                 command=lambda: fk.print_value(",")).place(x=575, y=position_last_line)
         ButtonDot = tk.Button(frame_keyboard, text=".", height=2, width=2, background="light blue",
-                              command=lambda: fk.print_value(".")).place(x=600, y=position_last_line)
+                              command=lambda: fk.print_value(".")).place(x=600, y=position_last_line+60)
         ButtonSpace = tk.Button(frame_keyboard, text=" ", height=2, width=10, background="light blue",
                                 command=lambda: fk.print_value(" ")).place(x=475, y=position_last_line+60)
         ButtonSeven = tk.Button(frame_keyboard, text="7", height=2, width=2, background="light blue",
@@ -118,3 +123,34 @@ class Keyboard:
             ButtonCapsLock.configure(background="#0752F2")
         else:
             ButtonCapsLock.configure(background="light blue")
+
+    def control_buttonSymbols(self):
+        if self.is_activated_sk is False:
+            self.sk.build_keyboard()
+            self.is_activated_sk =  True
+        else:
+            self.sk.destroy_keyboard()
+            self.is_activated_sk =False
+            
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
