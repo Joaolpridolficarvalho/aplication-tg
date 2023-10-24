@@ -1,32 +1,61 @@
-import openai
+import requests
+from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 import os
 from tkinter import Label
 from Functions_keyboard import Functions_keyboard as fk
 
 class Word_predictor:
-    def __init__(self, root=None):
+    def __init__(self, root, text_field):
         load_dotenv()
         self.prompt = "give me the most probability words in Portuguese based on prompt:  "
         self.root = root
         self.text = ""
         self. predictions = []
         self.x = 340
-        self.fk = fk
+        self.text_field = text_field
+        self.fk = fk(text_field = self.text_field)
 
-    def request(self, text):
-    	
-        openai.api_key = os.getenv("API_KEY")
-        response = openai.Completion.create(
-            model="text-davinci-003",
-            prompt=self.prompt + text,
-            max_tokens=100,
-            temperature=0
-        )
-       # print(self.prompt + text)
-       # print(response)
-        return response.choices[0].text
+    def request(self):
+    # URL da página de login
+    login_url = 'https://chat.openai.com/auth/login'
+    initial_page = requests.get(login_url)
+    if response.status_code == 200:
+    # Analisa o conteúdo da primeira página com BeautifulSoup
+    soup = BeautifulSoup(response.text, 'html.parser')
 
+    # Encontre o botão de entrada e obtenha o URL de ação do formulário
+    entry_button = soup.find('button', text='Entrar')
+    # Dados do formulário de login (substitua pelos dados reais)
+    login_data = {
+        'username': 'seu_nome_de_usuário',
+        'password': 'sua_senha'
+    }
+
+    # Faz uma solicitação POST para fazer login
+    with requests.Session() as session:
+        login_response = session.post(login_url, data=login_data)
+
+        # Verifica se o login foi bem-sucedido (você deve verificar a resposta real do site)
+        if 'Bem-vindo' in login_response.text:
+            print("Login bem-sucedido.")
+            
+            # Agora, você está autenticado e pode acessar a próxima página
+            next_page_url = 'https://exemplo.com/proxima-pagina'
+            next_page_response = session.get(next_page_url)
+
+            # Verifica se a solicitação foi bem-sucedida
+            if next_page_response.status_code == 200:
+                # Analisa o conteúdo da próxima página com BeautifulSoup
+                soup = BeautifulSoup(next_page_response.text, 'html.parser')
+
+                # Faça alguma ação com a página, como extrair informações ou links
+            else:
+                print("Falha ao acessar a próxima página. Código de resposta:", next_page_response.status_code)
+        else:
+            print("Falha no login. Verifique suas credenciais.")
+
+            
     def get_text(self):
         return self.text
 
