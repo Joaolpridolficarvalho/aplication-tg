@@ -9,7 +9,7 @@ class Keyboard:
     def __init__(self, frame_keyboard, text_field):
         self.text_field = text_field
         self.is_activated_sk = False
-        wp = Word_predictor(root=frame_keyboard)
+        wp = Word_predictor(frame, self.text_field, self.text_field)
         position_last_line = 130
         self.sk = sk(frame_keyboard, self.text_field)
         ButtonQ = tk.Button(frame_keyboard, text="q", height=2, width=2, background="light blue",
