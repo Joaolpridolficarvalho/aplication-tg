@@ -18,30 +18,18 @@ class Sintesizether:
 
         self.root = root
 
-        # Crie uma variável para armazenar a voz selecionada no Combobox
         self.selected_voice = tk.StringVar()
-
-        # Crie o Combobox para escolher a voz
         self.voice_choose = ttk.Combobox(self.root, textvariable=self.selected_voice, values=["Carregando..."], height=5)
         self.voice_choose.place(x=750, y=5)
         self.voice_choose.set("Selecione uma voz")
         self.voice_choose.config(width=10, height=5, background="white", foreground="black")
-
-        # Crie um botão de atualização
         self.update_button = tk.Button(self.root, text="Atualizar Vozes", command=self.update_voices)
         self.update_button.place(x=580, y=5)
-
-        # Verifique a conectividade com a internet
         self.is_connected = self.check_internet_connection()
-
-        # Carregue as vozes disponíveis no Combobox
         self.load_voices()
 
     def update_voices(self):
-        # Verifique a conectividade com a internet
         self.is_connected = self.check_internet_connection()
-
-        # Atualize a lista de vozes
         self.load_voices()
 
     def check_internet_connection(self):
@@ -68,22 +56,18 @@ class Sintesizether:
             return None
 
     def load_voices(self):
-        # Carregar vozes do eSpeak
         voices_espeak = self.list_voices()
 
-        # Carregar vozes do Watson Text-to-Speech somente se houver conectividade com a internet
         if self.is_connected:
             voices_watson = self.get_watson_voices()
         else:
             voices_watson = None
 
-        # Preencher o Combobox com as vozes disponíveis
         voice_options = ["Selecione uma voz"] + voices_espeak
         if voices_watson:
             voice_options += [f"IBM Watson: {voice['name']}" for voice in voices_watson['voices']]
         self.voice_choose['values'] = voice_options
 
-    # Restante do código (métodos speak, change_voice, save_file, request_Watson, play, run,
     def speak(self):
         try:
             self.save_file()
@@ -93,6 +77,7 @@ class Sintesizether:
             command = ['espeak-ng', '-w', self.path, text]
             subprocess.run(command, shell=False)
             self.play()
+        self.fk.clear_text()
 
     def change_voice(self):
         subprocess.run(['espeak-ng', '-v', self.voice], shell=False)

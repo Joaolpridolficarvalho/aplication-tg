@@ -11,7 +11,7 @@ class Interface:
 
         self.text_field = tb(self.root).text_field()
         
-        self.frame_favorite = Frame(self.root, width=350, height=270, background="yellow", border=2)
+        self.frame_favorite = Frame(self.root, width=500, height=270, background="yellow", border=2)
         self.frame_favorite.place(x=0, y=35)
         self.toolbar = Canvas(self.root, width=1024, height=30, background="black", border=2)
         self.toolbar.place(x=0, y=0)

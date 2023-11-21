@@ -1,4 +1,5 @@
 from tkinter import Frame, Button, END, Menu, SEL, INSERT
+
 class Functions_keyboard:
     def __init__(self, root=None, text_field=None):
         self.root = root
@@ -30,7 +31,7 @@ class Functions_keyboard:
     def get_text(self):
         setence = self.text_field.get("1.0", END)
         print(setence)
-        return setence
+        return str(setence)
         
     def get_position_cursor(self, event=None):
         try:
@@ -191,12 +192,7 @@ class Functions_keyboard:
             background="light blue",
             command=lambda: self.set_accents("`", letter),
         ).grid(row=0, column=3)
-        global trema
-        trema = Button(
-            bar,
-            text="¨",
-            height=1, width=1, background="light blue", command=lambda: self.set_accents("¨", letter),
-        ).grid(row=0, column=4)
+       
 
     def set_accents(self, accent, letter):
         if letter == "a" and accent == "´":

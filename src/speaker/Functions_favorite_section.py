@@ -23,7 +23,7 @@ class Functions_favorite_section:
         self.y = 45
         self.scrollbar = ttk.Scrollbar(self.frame_favorite, orient="vertical")
         self.scrollbar.pack(side="right", fill="y")
-        self.frame = Canvas(self.frame_favorite, background="green")
+        self.frame = Canvas(self.frame_favorite, background="yellow")
         self.frame.pack(side="left", fill="both", expand=True)
         self.scrollbar.config(command=self.frame.yview)
 
